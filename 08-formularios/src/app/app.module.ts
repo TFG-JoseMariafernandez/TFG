@@ -13,7 +13,6 @@ import { ContextComponent } from './pages/context/context.component';
 @NgModule({
   declarations: [
     AppComponent,
-    
     ContextComponent
   ],
   imports: [

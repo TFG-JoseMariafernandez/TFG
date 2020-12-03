@@ -22,6 +22,9 @@ export class ContextComponent implements OnInit {
     
 
   }
+  get experimenters(){
+    return this.forma.get('experimenters') as FormArray;
+  }
 
   ngOnInit(): void {
   }
@@ -47,6 +50,7 @@ export class ContextComponent implements OnInit {
         point_of_view: ['', Validators.required ],
         context_of  : ['', Validators.required ],
       }),
+      experimenters: this.fb.array([])
       
     },{
      
@@ -56,7 +60,20 @@ export class ContextComponent implements OnInit {
 
  
 
-  
+  agregarExperimenters(){
+    const ExperimentersFormGroup  = this.fb.group({
+      name: '',
+      email: '',
+      organization: '',
+      rol: '',
+      task: ''
+    });
+    this.experimenters.push(ExperimentersFormGroup);
+  }
+
+  removerExperimenters(indice: number) {
+    this.experimenters.removeAt(indice);
+  }
 
 
 
