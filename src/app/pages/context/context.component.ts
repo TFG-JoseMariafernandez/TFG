@@ -1,7 +1,7 @@
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import { ValidadoresService } from '../../services/validadores.service';
 
 @Component({
@@ -10,6 +10,15 @@ import { ValidadoresService } from '../../services/validadores.service';
   styleUrls: ['./context.component.css']
 })
 export class ContextComponent implements OnInit {
+  public Editor = DecoupledEditor;
+
+    public onReady( editor ) {
+        editor.ui.getEditableElement().parentElement.insertBefore(
+            editor.ui.view.toolbar.element,
+            editor.ui.getEditableElement()
+        );
+    }
+
 
   forma: FormGroup;
 

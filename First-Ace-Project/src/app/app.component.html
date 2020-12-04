@@ -1,0 +1,25 @@
+<ace style="height:200px"
+  [disabled]="false" 
+  [mode]="'html'"
+  [theme]="'clouds'"
+  [config]="{}"
+  [(value)]="content"
+  (blur)="log($event, 'blur')" 
+  (focus)="log($event, 'focus')" 
+  (copy)="log($event, 'copy')" 
+  (paste)="log($event, 'paste')" 
+  (change)="log($event, 'change')"
+  (changeSession)="log($event, 'changeSession')"
+  (changeCursor)="log($event, 'changeCursor')"
+  (changeSelection)="log($event, 'changeSelection')">
+</ace>
+
+
+<h2>Preview</h2>
+<div [innerHTML]="content" style="border: 1px solid #ccc"></div>
+
+<fieldset>
+  <legend><button (click)="showLog = !showLog">show/hide event log</button></legend>
+  <textarea [hidden]="!showLog" id="log" 
+    style="width: 100%; height: 200px; overflow: auto"></textarea>
+</fieldset>

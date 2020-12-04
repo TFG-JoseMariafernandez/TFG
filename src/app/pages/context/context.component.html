@@ -149,17 +149,16 @@
         <input type="text" [attr.id]="'rol' + i" class="form-control" formControlName="rol">
       </td>
       
-      <td>       
-        <input    type="text" [attr.id]="'task' + i" class="form-control" formControlName="task">
-      </td>
-    </tr>
-      
-        <button class="btn btn-danger" (click)="removerExperimenters(i)">Remover</button>
-    
    
+      <td>  
+    <button (click)="removerExperimenters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </td>
+  <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" (ready)="onReady($event)"[attr.id]="'task' + i" class="form-control" formControlName="task"></ckeditor>
   
-
-
+  </tr>
+  
 </tbody>
 </table>
 
@@ -179,7 +178,6 @@
   </div>
 
 </form>
-
 
 
 <hr>
