@@ -12,24 +12,39 @@ import { AppComponent } from './app.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { ContextComponent } from './pages/context/context.component';
+import { variableComponent } from './pages/variables/variable.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContextComponent
+    ContextComponent,
+    variableComponent
   ],
   imports: [
     BrowserModule,
     MatSliderModule,
     AppRoutingModule,
+    
+    MatInputModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatButtonModule,   
+    MatFormFieldModule,
+    MatButtonModule,  
+    MatDialogModule, 
     MatIconModule, 
     MatToolbarModule,
     MatTooltipModule,
+    MatSelectModule,
+    MatMenuModule,
 
     BrowserAnimationsModule,
     CKEditorModule

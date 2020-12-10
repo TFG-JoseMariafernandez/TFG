@@ -1,0 +1,143 @@
+<h4>Context</h4>
+<hr>
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+  
+
+        <div class="form-row col">
+
+         name :  <input type="text"
+                 class="form-control"
+                 placeholder="name of variable"
+                 formControlName="name">
+                 
+
+        
+
+        
+
+         Description : <input type="text"
+                 class="form-control"
+                 placeholder="Description"
+                 formControlName="description"
+                >
+
+        
+        
+
+        
+       
+         
+                <mat-label>Domain</mat-label>
+                <mat-select  class="form-control" formControlName="domain">
+                  <mat-option    *ngFor="let dom of domains"  [value]="dom.value"  >
+                    {{dom.viewValue}}
+                  </mat-option>
+                </mat-select>
+
+               
+
+    </div>
+
+
+
+    <div *ngIf = "forma.value.domain == domains[1].value" >
+      
+    
+      
+     
+        <mat-label >Units   </mat-label>
+        <select   class="form-control" formControlName="units" matNativeControl required>
+          <option value="Float">Float</option>
+          <option value="Integer">Integer</option>
+          <option value="String">String</option>
+          
+        </select>
+
+    
+     
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div *ngIf = "forma.value.domain == domains[0].value" >
+      <div class="form-group">
+        <a class="btn btn-primary" (click)="aagregarTypes()">Add types</a>
+      </div>
+    
+      
+    
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>description</th>
+            <th>Unit</th>
+            
+          </tr>
+        </thead>
+        
+    
+    <tbody formArrayName="types" *ngFor="let types of types.controls; let i = index" >
+      
+      
+        <tr [formGroupName]="i" >
+        
+         
+          <td >        
+            <input  type="text" [attr.id]="'name' + i" class="form-control" formControlName="name">
+          </td>
+          
+          <td >       
+            <input  type="text" [attr.id]="'description' + i" class="form-control" formControlName="description">
+          </td>
+          <td >       
+            <input  type="text" [attr.id]="'unit' + i" class="form-control" formControlName="unit">
+          </td>
+        
+          
+       
+          <td>  
+        <button (click)="removerTypes(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+      
+      </tr>
+      
+    </tbody>
+    </table>
+    
+    
+    
+     
+    </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</form>
+
+
+<hr>
+
+
+<pre>
+
+
+  {{ forma.value | json }}
+
+</pre>
