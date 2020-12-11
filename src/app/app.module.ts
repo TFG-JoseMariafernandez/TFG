@@ -13,6 +13,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { ContextComponent } from './pages/context/context.component';
 import { variableComponent } from './pages/variables/variable.component';
+import { hypothesesComponent } from './pages/hypotheses/hypotheses.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -26,7 +27,8 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [
     AppComponent,
     ContextComponent,
-    variableComponent
+    variableComponent,
+    hypothesesComponent,
   ],
   imports: [
     BrowserModule,

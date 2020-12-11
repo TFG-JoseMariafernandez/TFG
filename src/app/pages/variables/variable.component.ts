@@ -68,6 +68,7 @@ export class variableComponent implements OnInit {
       description: ['', Validators.required ],     
       units: ['', Validators.required ], 
       domain: ['', Validators.required ],  
+      type: ['', Validators.required ],
       types: this.fb.array([]),
      
     });

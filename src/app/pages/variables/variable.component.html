@@ -1,4 +1,4 @@
-<h4>Context</h4>
+<h4>Variables</h4>
 <hr>
 <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
 
@@ -6,17 +6,26 @@
 
         <div class="form-row col">
 
-         name :  <input type="text"
+          <mat-label >Name   </mat-label>  <input  matInput type="text"
                  class="form-control"
                  placeholder="name of variable"
                  formControlName="name">
+
+        <mat-label >Type   </mat-label>
+                 <select   class="form-control" formControlName="type" matNativeControl required>
+                   <option value="Controllable_factor">Controllable factor </option>
+                   <option value="Not_Controllable factor">Not Controllable factor</option>
+                   <option value="OutCome">Outcome ( a.k.a depend variable or response variable)</option>
+                   <option value="Nuisance">Nuisance ( a.k.a moderating variable)</option>
+                   
+                 </select>
                  
 
         
 
         
 
-         Description : <input type="text"
+                 <mat-label >Description   </mat-label> <input matInput type="text"
                  class="form-control"
                  placeholder="Description"
                  formControlName="description"
@@ -68,9 +77,6 @@
 
 
     <div *ngIf = "forma.value.domain == domains[0].value" >
-      <div class="form-group">
-        <a class="btn btn-primary" (click)="aagregarTypes()">Add types</a>
-      </div>
     
       
     
@@ -80,6 +86,9 @@
             <th>Name</th>
             <th>description</th>
             <th>Unit</th>
+            <th> <button (click)="aagregarTypes()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+              <mat-icon>+</mat-icon>
+            </button></th>
             
           </tr>
         </thead>
@@ -92,14 +101,14 @@
         
          
           <td >        
-            <input  type="text" [attr.id]="'name' + i" class="form-control" formControlName="name">
+            <input matInput type="text" [attr.id]="'name' + i" class="form-control" formControlName="name">
           </td>
           
           <td >       
-            <input  type="text" [attr.id]="'description' + i" class="form-control" formControlName="description">
+            <input matInput  type="text" [attr.id]="'description' + i" class="form-control" formControlName="description">
           </td>
           <td >       
-            <input  type="text" [attr.id]="'unit' + i" class="form-control" formControlName="unit">
+            <input  matInput type="text" [attr.id]="'unit' + i" class="form-control" formControlName="unit">
           </td>
         
           
