@@ -1,0 +1,152 @@
+<h4>Variables</h4>
+<hr>
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+  
+
+        <div class="form-row col">
+
+          <mat-label >Name   </mat-label>  <input  matInput type="text"
+                 class="form-control"
+                 placeholder="name of variable"
+                 formControlName="name">
+
+        <mat-label >Type   </mat-label>
+                 <select   class="form-control" formControlName="type" matNativeControl required>
+                   <option value="Controllable_factor">Controllable factor </option>
+                   <option value="Not_Controllable factor">Not Controllable factor</option>
+                   <option value="OutCome">Outcome ( a.k.a depend variable or response variable)</option>
+                   <option value="Nuisance">Nuisance ( a.k.a moderating variable)</option>
+                   
+                 </select>
+                 
+
+        
+
+        
+
+                 <mat-label >Description   </mat-label> <input matInput type="text"
+                 class="form-control"
+                 placeholder="Description"
+                 formControlName="description"
+                >
+
+        
+        
+
+        
+       
+         
+                <mat-label>Domain</mat-label>
+                <mat-select  class="form-control" formControlName="domain">
+                  <mat-option    *ngFor="let dom of domains"  [value]="dom.value"  >
+                    {{dom.viewValue}}
+                  </mat-option>
+                </mat-select>
+
+               
+
+    </div>
+
+
+
+    <div *ngIf = "forma.value.domain == domains[1].value" >
+      
+    
+      
+     
+        <mat-label >Units   </mat-label>
+        <select   class="form-control" formControlName="units" matNativeControl required>
+          <option value="Float">Float</option>
+          <option value="Integer">Integer</option>
+          <option value="String">String</option>
+          
+        </select>
+
+    
+     
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div *ngIf = "forma.value.domain == domains[0].value" >
+    
+      
+    
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>description</th>
+            <th>Unit</th>
+            <th> <button (click)="aagregarTypes()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+              <mat-icon>+</mat-icon>
+            </button></th>
+            
+          </tr>
+        </thead>
+        
+    
+    <tbody formArrayName="types" *ngFor="let types of types.controls; let i = index" >
+      
+      
+        <tr [formGroupName]="i" >
+        
+         
+          <td >        
+            <input matInput type="text" [attr.id]="'name' + i" class="form-control" formControlName="name">
+          </td>
+          
+          <td >       
+            <input matInput  type="text" [attr.id]="'description' + i" class="form-control" formControlName="description">
+          </td>
+          <td >       
+            <input  matInput type="text" [attr.id]="'unit' + i" class="form-control" formControlName="unit">
+          </td>
+        
+          
+       
+          <td>  
+        <button (click)="removerTypes(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+      
+      </tr>
+      
+    </tbody>
+    </table>
+    
+    
+    
+     
+    </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</form>
+
+
+<hr>
+
+
+<pre>
+
+
+  {{ forma.value | json }}
+
+</pre>

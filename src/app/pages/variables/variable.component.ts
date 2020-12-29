@@ -5,64 +5,71 @@ import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import { ValidadoresService } from '../../services/validadores.service';
 
 @Component({
-  selector: 'app-context',
-  templateUrl: './context.component.html',
-  styleUrls: ['./context.component.css']
+  selector: 'app-variable',
+  templateUrl: './variable.component.html',
+  styleUrls: ['./variable.component.css']
 })
-export class ContextComponent implements OnInit {
+
+export class variableComponent implements OnInit {
+  
   public Editor = DecoupledEditor;
 
     public onReady( editor ) {
         editor.ui.getEditableElement().parentElement.insertBefore(
             editor.ui.view.toolbar.element,
             editor.ui.getEditableElement()
-        
         );
     }
+
+
+   
+
+
 
 
   forma: FormGroup;
 
 
   constructor( private fb: FormBuilder,
-               private validadores: ValidadoresService ) { 
+               private validadores: ValidadoresService, ) { 
+                 
 
     this.crearFormulario();
     //this.cargarDataAlFormulario();
     
 
   }
-  get experimenters(){
-    return this.forma.get('experimenters') as FormArray;
+  get types(){
+    return this.forma.get('types') as FormArray;
   }
 
   ngOnInit(): void {
   }
 
- 
+   
+   domains  = [
+    {value: 'One_of ', viewValue: 'One of'},
+    {value: 'Of_type', viewValue: 'of type'},
+    
+  ];
 
+
+  
+
+  
     
 
 
   crearFormulario() {
+ 
 
     this.forma = this.fb.group({   
-      absctract: this.fb.group({
-        context: ['', Validators.required ],
-        goal: ['', Validators.required ],
-        method: ['', Validators.required ],   
-        result: ['', Validators.required ],
-        conclusions  : ['', Validators.required ],
-      }), goal: this.fb.group({
-        analyce: ['', Validators.required ],
-        purpose_of: ['', Validators.required ],
-        respect_to: ['', Validators.required ],   
-        point_of_view: ['', Validators.required ],
-        context_of  : ['', Validators.required ],
-      }),
-      experimenters: this.fb.array([])
-      
-    },{
+      name :  ['', Validators.required ],
+      description: ['', Validators.required ],     
+      units: ['', Validators.required ], 
+      domain: ['', Validators.required ],  
+      type: ['', Validators.required ],
+      types: this.fb.array([]),
      
     });
 
@@ -70,19 +77,20 @@ export class ContextComponent implements OnInit {
 
  
 
-  agregarExperimenters(){
-    const ExperimentersFormGroup  = this.fb.group({
+
+
+  aagregarTypes(){
+    const TypesFormGroup  = this.fb.group({
       name: '',
-      email: '',
-      organization: '',
-      rol: '',
-      task: ''
+      description: '',
+      unit: '',
+      
     });
-    this.experimenters.push(ExperimentersFormGroup);
+    this.types.push(TypesFormGroup);
   }
 
-  removerExperimenters(indice: number) {
-    this.experimenters.removeAt(indice);
+  removerTypes(indice: number) {
+    this.types.removeAt(indice);
   }
 
 

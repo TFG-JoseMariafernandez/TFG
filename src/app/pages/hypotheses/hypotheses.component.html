@@ -1,0 +1,103 @@
+<h4>Hypotheses</h4>
+<hr>
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+  <div class="form-row col">
+
+    <mat-label >Name   </mat-label>  <input type="text"
+           class="form-control"
+           placeholder="name of Hypotheses"
+           formControlName="name">
+
+  <mat-label >Type   </mat-label>
+           <select   class="form-control" formControlName="type" matNativeControl required>
+             <option value="impacted">Is impacted significatly by </option>
+             <option value="Correloated">Is correloated with </option>
+             <option value="Described">Described in natural language </option>
+           
+             
+           </select>
+           
+
+  
+
+  
+
+           <mat-label >Description   </mat-label> <input type="text"
+           class="form-control"
+           placeholder="Description"
+           formControlName="description"
+          >
+
+
+
+
+         
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Variabe</th>
+      <th> <button (click)="aagregarVar()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+        <mat-icon>+</mat-icon>
+      </button></th>
+     
+      
+    </tr>
+  </thead>
+  
+
+<tbody formArrayName="vars" *ngFor="let vars of vars.controls; let i = index" >
+
+
+  <tr [formGroupName]="i" >
+  
+   
+    <td >        
+      <input  type="text" [attr.id]="'name' + i" class="form-control" formControlName="name">
+    </td>
+    
+  
+    
+ 
+    <td>  
+  <button (click)="removerVar(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>delete</mat-icon>
+  </button>
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+</div>
+
+        
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</form>
+
+
+<hr>
+
+
+<pre>
+
+
+  {{ forma.value | json }}
+
+</pre>

@@ -109,9 +109,6 @@
 
     </div>
   </div>
-  <div class="form-group">
-    <a class="btn btn-primary" (click)="agregarExperimenters()">Add Experimenters</a>
-  </div>
 
   
 
@@ -123,6 +120,9 @@
         <th>organization</th>
         <th>rol</th>
         <th>task</th>
+        <th> <button (click)="agregarExperimenters()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          <mat-icon>+</mat-icon>
+        </button></th>
       </tr>
     </thead>
     
@@ -149,17 +149,16 @@
         <input type="text" [attr.id]="'rol' + i" class="form-control" formControlName="rol">
       </td>
       
-      <td>       
-        <input    type="text" [attr.id]="'task' + i" class="form-control" formControlName="task">
-      </td>
-    </tr>
-      
-        <button class="btn btn-danger" (click)="removerExperimenters(i)">Remover</button>
-    
    
+    
+  <ckeditor config.width = '75%' [editor]="Editor"  (ready)="onReady($event)"[attr.id]="'task' + i"formControlName="task"></ckeditor>
+  <td>  
+    <button (click)="removerExperimenters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </td>
+  </tr>
   
-
-
 </tbody>
 </table>
 
@@ -179,7 +178,6 @@
   </div>
 
 </form>
-
 
 
 <hr>
