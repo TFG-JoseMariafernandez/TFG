@@ -1,22 +1,23 @@
-
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span routerLink="/" style="color: aliceblue;" >APP TFG</span>
-    <span class="example-spacer"></span>
-    <a style="margin: 5%;" routerLink="/context">context</a>
-    <a style="margin: 5%;" routerLink="/hypotheses">Hypothesis</a>
-    <a  style="margin: 5%;"routerLink="/variable">Variable</a>
-    <a  style="margin: 5%;" routerLink="/*">Design</a>
-    <a style="margin: 5%;"  routerLink="/*">Conduction</a>
-    <a style="margin: 5%;" routerLink="/*">Analyses</a>
- 
-  </mat-toolbar-row>
+    <mat-toolbar-row>
+        <span routerLink="/" style="color: aliceblue;">APP TFG</span>
+        <span class="example-spacer"></span>
+        <a style="margin: 5%;" routerLink="/context">context</a>
+        <a style="margin: 5%;" routerLink="/hypotheses">Hypothesis</a>
+        <a style="margin: 5%;" routerLink="/variable">Variable</a>
+        <a style="margin: 5%;" routerLink="/*">Design</a>
+        <a style="margin: 5%;" routerLink="/*">Conduction</a>
+        <a style="margin: 5%;" routerLink="/analyses">Analyses</a>
 
- 
+    </mat-toolbar-row>
+
+
 </mat-toolbar>
 
 <div class="container mt-5">
 
     <router-outlet></router-outlet>
+    <!--  <span> mensaje desde hijo : {{textoPadre}}</span>
+    <app-variable (enviar)="recibir($event)"> </app-variable>
 
-</div>
+</div>-->

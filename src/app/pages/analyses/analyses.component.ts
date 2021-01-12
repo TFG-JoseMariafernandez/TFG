@@ -5,11 +5,11 @@ import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import { ValidadoresService } from '../../services/validadores.service';
 
 @Component({
-  selector: 'app-context',
-  templateUrl: './context.component.html',
-  styleUrls: ['./context.component.css']
+  selector: 'app-analyses',
+  templateUrl: './analyses.component.html',
+  styleUrls: ['./analyses.component.css']
 })
-export class ContextComponent implements OnInit {
+export class AnalysesComponent implements OnInit {
   public Editor = DecoupledEditor;
 
     public onReady( editor ) {
@@ -33,9 +33,13 @@ export class ContextComponent implements OnInit {
     
 
   }
-  get experimenters(){
-    return this.forma.get('experimenters') as FormArray;
+  get analyses(){
+    return this.forma.get('analyses') as FormArray;
   }
+    get details(){
+      return this.forma.get('details') as FormArray;
+    }
+  
 
   ngOnInit(): void {
   }
@@ -48,42 +52,51 @@ export class ContextComponent implements OnInit {
   crearFormulario() {
 
     this.forma = this.fb.group({   
-      absctract: this.fb.group({
-        context: ['', Validators.required ],
-        goal: ['', Validators.required ],
-        method: ['', Validators.required ],   
-        result: ['', Validators.required ],
-        conclusions  : ['', Validators.required ],
-      }), goal: this.fb.group({
-        analyce: ['', Validators.required ],
-        purpose_of: ['', Validators.required ],
-        respect_to: ['', Validators.required ],   
-        point_of_view: ['', Validators.required ],
-        context_of  : ['', Validators.required ],
-      }),
-      experimenters: this.fb.array([])
+     
+    
+      name: ['', Validators.required ],
+     
+      analyses: this.fb.array([]),
+      
+ 
+      
+   
+      details:this.fb.array([]),
       
     },{
-     
+      
     });
 
   }
 
  
 
-  agregarExperimenters(){
-    const ExperimentersFormGroup  = this.fb.group({
-      name: '',
-      email: '',
-      organization: '',
-      rol: '',
-      task: ''
+  agregaranalyses(){
+    const AnalysesFormGroup  = this.fb.group({
+      id: '',
+      analyses_type: '',
+      details:this.details,
+      data_spect:'',
+      
+     
     });
-    this.experimenters.push(ExperimentersFormGroup);
+    this.analyses.push(AnalysesFormGroup);
+  }
+  agregarDetails(){
+    const DetailsFormGroup  = this.fb.group({
+      var: '',
+      
+      
+     
+    });
+    this.details.push(DetailsFormGroup);
   }
 
   removerExperimenters(indice: number) {
-    this.experimenters.removeAt(indice);
+    this.analyses.removeAt(indice);
+  }
+  removerDetails(indice: number) {
+    this.details.removeAt(indice);
   }
 
 

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { ContextComponent } from './pages/context/context.component';
+import { AnalysesComponent } from './pages/analyses/analyses.component';
 import { variableComponent } from './pages/variables/variable.component';
 import { hypothesesComponent } from './pages/hypotheses/hypotheses.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +30,7 @@ import { MatInputModule } from '@angular/material/input';
     ContextComponent,
     variableComponent,
     hypothesesComponent,
+    AnalysesComponent,
   ],
   imports: [
     BrowserModule,

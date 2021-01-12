@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'formularios';
+  textoPadre: string;
+ 
+  recibir(mensaje:string){
+    this.textoPadre = mensaje;
+
+  }
 }

@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import { ValidadoresService } from '../../services/validadores.service';
-
+import { Output, EventEmitter } from '@angular/core';
+import {  Input } from '@angular/core'; // First, import Input
 @Component({
   selector: 'app-variable',
   templateUrl: './variable.component.html',
@@ -11,6 +12,15 @@ import { ValidadoresService } from '../../services/validadores.service';
 })
 
 export class variableComponent implements OnInit {
+  @Output()
+  enviar: EventEmitter<string> = new EventEmitter<string>();
+  texto: string;
+
+  botonClick(){
+    this.enviar.emit(this.texto)
+
+  }
+  
   
   public Editor = DecoupledEditor;
 
