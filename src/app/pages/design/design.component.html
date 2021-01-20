@@ -3,13 +3,13 @@
 <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
 
   
-  <div class="form-group row" formGroupName="absctract">
+  
     
 
         <div class="form-row col">
 
           <mat-label>Design </mat-label>
-          <select class="form-control" formControlName="design" matNativeControl required>
+          <select class="form-control" formControlName="type" matNativeControl required>
             <option value="Custom">Custom/Exhaustively described</option>
             <option value="Pre-test/post-test">Pre-test/post-test control group design</option>
             <option value="solomon">Solomon four group design </option>
@@ -36,14 +36,14 @@
                       <th>value</th>
                       <th>measured in </th>
                       <th>descripcion </th>
-                      <th> <button (click)=" agregarDesign_parameters()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                      <th> <button (click)=" agregarParameters()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
                         <mat-icon>+</mat-icon>
                       </button></th>
                     </tr>
                   </thead>
                   
               
-              <tbody formArrayName="Design_parameters" *ngFor="let  Design_parameters of  Design_parameters.controls; let i = index" >
+              <tbody formArrayName="parameters" *ngFor="let  parameters of parameters.controls; let i = index" >
                 
                 
                   <tr [formGroupName]="i" >
@@ -68,7 +68,7 @@
                  
                   
                <td>  
-                  <button (click)="removerDesign_parameters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  <button (click)="removerParameters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </td>
@@ -76,11 +76,11 @@
                 
               </tbody>
               </table>
-        </div>
+        
         
        
      
-  </div>
+
   <mat-label>Random assignement of subject to groups  </mat-label>
   <select class="form-control" formControlName="Random" matNativeControl required>
     <option value="true">true</option>
@@ -92,7 +92,7 @@
   Descripcion of the assignement method  : <input type="text"
   class="form-control"
   placeholder="descripcion"
-  formControlName="description"
+  formControlName="des_assig"
  >
  <mat-label>Blocking  variables </mat-label>
  <table class="table">
@@ -204,6 +204,7 @@
       </button>
     </div>
   </div>
+</div>
 
 </form>
 

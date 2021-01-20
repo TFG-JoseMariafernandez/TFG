@@ -33,8 +33,8 @@ export class DesignComponent implements OnInit {
     
 
   }
-  get Design_parameters(){
-    return this.forma.get('Design_parameters') as FormArray;
+  get parameters(){
+    return this.forma.get('parameters') as FormArray;
   }
   get blocking(){
     return this.forma.get('blocking') as FormArray;
@@ -59,47 +59,44 @@ export class DesignComponent implements OnInit {
   crearFormulario() {
 
     this.forma = this.fb.group({   
-     
-      Design_parameters: this.fb.array([]),
+      parameters: this.fb.array([]),
       blocking: this.fb.array([]),
       groups: this.fb.array([]),
-      protocols: this.fb.array([])
+      protocols: this.fb.array([]),
+      type:  ['', Validators.required ],
+      description: ['', Validators.required ],    
+      Random :  ['', Validators.required ],
+      des_assig: ['', Validators.required ],    
       
-    },{
-     
+      
     });
 
   }
 
  
 
-  agregarDesign_parameters(){
-    const  Design_parametersFormGroup  = this.fb.group({
+  agregarParameters(){
+    const  parametersFormGroup  = this.fb.group({
       parameter: '',
       value: '',
       measured_in: '',
       description: '',
       
     });
-    this.Design_parameters.push( Design_parametersFormGroup);
+    this.parameters.push( parametersFormGroup);
   }
   agregarBlocking(){
     const  BlockingFormGroup  = this.fb.group({
       name: '',
-      email: '',
-      organization: '',
-      rol: '',
-      task: ''
+     
     });
-    this.blocking.push( BlockingFormGroup);
+    this.blocking.push(BlockingFormGroup);
   }
   agregarGroups(){
     const  GroupsFormGroup  = this.fb.group({
       name: '',
-      email: '',
-      organization: '',
-      rol: '',
-      task: ''
+      size: '',
+      
     });
     this.groups.push( GroupsFormGroup);
   }
@@ -107,16 +104,13 @@ export class DesignComponent implements OnInit {
   agregarProtocols(){
     const  ProtocolsFormGroup  = this.fb.group({
       name: '',
-      email: '',
-      organization: '',
-      rol: '',
-      task: ''
+     
     });
     this.protocols.push( ProtocolsFormGroup);
   }
 
-  removerDesign_parameters(indice: number) {
-    this.Design_parameters.removeAt(indice);
+  removerParameters(indice: number) {
+    this.parameters.removeAt(indice);
   }
   removerBlocking(indice: number) {
     this.blocking.removeAt(indice);
