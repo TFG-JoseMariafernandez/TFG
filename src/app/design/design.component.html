@@ -1,0 +1,193 @@
+<h2>Design</h2>
+
+
+{{Variables}}
+
+
+
+  
+ 
+ 
+  <button (click)="agregarDesign()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    +
+  </button>
+<tbody formArrayName="design" *ngFor="let design of Desing; let i = index " >
+  
+  
+    
+    
+     
+      <td >  Name      
+        <input />
+        <select [(ngModel)]="design.design" placeholder="Design">
+            <option value="Custom">Custom/Exhaustively described</option>
+            <option value="Pre-test/post-test">Pre-test/post-test control group design</option>
+            <option value="solomon">Solomon four group design </option>
+            <option value="control_group">Post-test only control group design </option>
+            
+          </select>
+                 
+      </td>
+      
+      <td >   Description   
+        <input [(ngModel)]="design.description" placeholder="description"/> 
+        
+      </td>
+      <td>  Parameters
+
+
+        <button (click)="agregarParameters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          +
+        </button>
+      <tbody formArrayName="parameter" *ngFor="let parameters of design.design_parameters; let p = index " >
+        
+        
+          
+          
+           
+            <td >  Name      
+              <input [(ngModel)]="parameters.name" placeholder="Name"/>
+            
+            </td>
+            <td >  value      
+              <input [(ngModel)]="parameters.value" placeholder="description"/>
+            
+            </td>
+            <td >  description      
+              <input [(ngModel)]="parameters.description" placeholder="description"/>
+            
+            </td>
+            <td >  measure In       
+                <input [(ngModel)]="parameters.measure_in" placeholder="measure_in"/>
+              
+              </td>
+            <td>  
+              <button (click)="removerParameters(i,p)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+             
+            </td>
+        </tbody>
+
+</td>
+
+<td >   Random Assignment   
+    <input [(ngModel)]="design.random_assignment" placeholder="random_assignment"/> 
+    
+  </td>
+  <td >   Description    of assignement
+    <input [(ngModel)]="design.description_assignmentMethod" placeholder="description_assignmentMethod"/> 
+    
+  </td>
+
+  
+      
+       
+        
+  <td>  Groups
+
+
+    <button (click)="agregarGroups(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      +
+    </button>
+  <tbody formArrayName="group" *ngFor="let group of design.groups; let g = index " >
+    
+    
+      
+      
+       
+        <td >  Name      
+          <input [(ngModel)]="group.name" placeholder="Name"/>
+        
+        </td>
+        <td >  size      
+          <input [(ngModel)]="group.size" placeholder="size"/>
+        
+        </td>
+      
+        <td>  
+          <button (click)="removerGroup(i,g)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+         
+        </td>
+  </tbody>
+  
+
+</td>
+
+<td>  Protocol
+
+
+    <button (click)="agregarProtocol(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      +
+    </button>
+  <tbody formArrayName="protocol" *ngFor="let protocol of design.protocols; let pr = index " >
+    
+    
+      
+      
+       
+        <td >  Name      
+          <input [(ngModel)]="protocol.name" placeholder="Name"/>
+        
+        </td>
+        <td >  type      
+          <input [(ngModel)]="protocol.type" placeholder="type"/>
+        
+        </td>
+      
+        <td>  
+          <button (click)="removerProtocol(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+         
+        </td>
+  </tbody>
+  
+
+</td>
+<td>  Bñloquing Variables 
+
+
+    <button (click)="agregarBloquingVars(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      +
+    </button>
+  <tbody formArrayName="var" *ngFor="let bloquingVar of design.BloquingVars; let bv = index " >
+    
+    
+      
+      
+    <select [(ngModel)]="bloquingVar.name" placeholder="description">
+        <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}} </option>
+                   
+      </select>
+      
+        <td>  
+          <button (click)="removerVars(i,bv)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+         
+        </td>
+  </tbody>
+  
+  
+
+</td>
+  
+    
+    
+  
+  <td>  
+    <button (click)="removerDesign(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+   
+  </td>
+
+  
+</tbody>
+
+
+
+  
+    <button  (click)="guardar(Desing)"> GUARDAR</button>>
+  
+
+
+
+  
+
+
+
+  

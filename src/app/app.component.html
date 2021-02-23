@@ -1,23 +1,13 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <span routerLink="/" style="color: aliceblue;">APP TFG</span>
-        <span class="example-spacer"></span>
-        <a style="margin: 5%;" routerLink="/context">context</a>
-        <a style="margin: 5%;" routerLink="/hypotheses">Hypothesis</a>
-        <a style="margin: 5%;" routerLink="/variable">Variable</a>
-        <a style="margin: 5%;" routerLink="/design">Design</a>
-        <a style="margin: 5%;" routerLink="/*">Conduction</a>
-        <a style="margin: 5%;" routerLink="/analyses">Analyses</a>
-
-    </mat-toolbar-row>
+<h1>{{title}}</h1>
 
 
-</mat-toolbar>
+<mat-tab-group>
+    <mat-tab label="Context"> <app-context [Variable]="VariableEnviado"  (enviar)="recibirContext($event)"  ></app-context> </mat-tab>
+    <mat-tab label="Variable">  <app-variables [Contexto]="ContextEnviado" (enviar)="recibirVariable($event)"  ></app-variables> </mat-tab>
+    <mat-tab label="Hypotheses">  <app-hypotheses [Variable]="VariableEnviado" (enviar)="recibirHypotheses($event)"   ></app-hypotheses> </mat-tab>
+    <mat-tab label="Design">  <app-design [Variables]="VariableEnviadoDes"    ></app-design> </mat-tab>
+    
+    <mat-tab label="JSON">  <pre>{{vercontextFinal | json}} {{VarFinal | json}}  {{hypothesesFinal | json}}    </pre> </mat-tab>
+  </mat-tab-group>
 
-<div class="container mt-5">
 
-    <router-outlet></router-outlet>
-    <!--  <span> mensaje desde hijo : {{textoPadre}}</span>
-    <app-variable (enviar)="recibir($event)"> </app-variable>
-
-</div>-->

@@ -1,0 +1,78 @@
+<h2>Hypotheses</h2>
+
+
+
+
+
+
+
+  
+ 
+  
+  <div><span>Hypotheses </span></div>
+  <button (click)="agregarHypotheses()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    +
+  </button>
+
+  
+  
+  <tbody formArrayName="hypotheses" *ngFor="let hypothese of hypotheses; let i = index " >
+    
+     
+      <td >  Name      
+        <input [(ngModel)]="hypothese.name" placeholder="Name"/>
+      
+      </td>
+      
+      <td >   Type   
+        
+        <select   [(ngModel)]="hypothese.description" placeholder="description">
+            <option value="impacted">Is impacted significatly by </option>
+            <option value="Correloated">Is correloated with </option>
+            <option value="Described">Described in natural language </option>
+          
+            
+          </select>
+        
+      </td>
+      
+      <td>  Description
+        <input [(ngModel)]="hypothese.type" placeholder="type"/>
+        
+      </td>
+     
+      <td >   Type   
+        
+        <select  [(ngModel)]="hypothese.variable" placeholder="description">
+            <option  *ngFor="let variable of Variable; let i = index " value="{{variable.name}}">{{variable.name}} </option>
+                       
+          </select>
+        
+      </td>
+     
+      
+      
+   
+    
+  
+  <td>  
+    <button (click)="removerHypotheses(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+   
+  </td>
+
+  
+
+
+
+
+  
+  </tbody>
+
+
+  <button  (click)="guardar(hypotheses)"> GUARDAR</button>>
+  
+  
+
+
+
+  

@@ -1,0 +1,137 @@
+<h2>My Heroes</h2>
+
+<div *ngIf="Contexto">
+{{Contexto.Absatract.Context}}
+</div>
+
+
+
+
+
+  
+ 
+  
+  <div><span>Types </span></div>
+  <button (click)="agregarVariable()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    +
+  </button>
+<tbody formArrayName="variable" *ngFor="let variable of variables; let i = index " >
+  
+  
+    
+    
+     
+      <td >  Name      
+        <input [(ngModel)]="variable.name" placeholder="Name"/>
+      
+      </td>
+
+      <td >   Type
+       
+        <select [(ngModel)]="variable.type" placeholder="type"  >
+          <option value="Controllable_factor">Controllable factor </option>
+          <option value="Not_Controllable factor">Not Controllable factor</option>
+          <option value="OutCome">Outcome ( a.k.a depend variable or response variable)</option>
+          <option value="Nuisance">Nuisance ( a.k.a moderating variable)</option>
+          
+        </select>   
+      
+      </td>
+      
+      <td >   Description   
+        <input [(ngModel)]="variable.description" placeholder="description"/> 
+        
+      </td>
+      <td >   Domain
+      
+      
+        <select  [(ngModel)]="variable.domain" placeholder="domain">
+            <option *ngFor="let dom of domains" [value]="dom.value">
+                {{dom.viewValue}}
+            </option>
+        </select>
+      
+      </td>
+    
+        
+        
+     
+      <div *ngIf="variable.domain == domains[1].value">
+        <td>  Units
+
+
+
+       
+        <select [(ngModel)]="variable.units" placeholder="units">
+          <option value="Float">Float</option>
+          <option value="Integer">Integer</option>
+          <option value="String">String</option>
+          
+        </select>
+
+
+ </td>
+    
+    </div>
+    <div *ngIf="variable.domain == domains[0].value">
+      <td>  Units
+
+
+        <button (click)="agregarType(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          +
+        </button>
+      <tbody formArrayName="type" *ngFor="let type of variable.types; let j = index " >
+        
+        
+          
+          
+           
+            <td >  Name      
+              <input [(ngModel)]="type.name" placeholder="Name"/>
+            
+            </td>
+            <td >  Name      
+              <input [(ngModel)]="type.description" placeholder="description"/>
+            
+            </td>
+            <td >  Name      
+              <input [(ngModel)]="type.unit" placeholder="unit"/>
+            
+            </td>
+            <td>  
+              <button (click)="removerType(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+             
+            </td>
+      
+
+</td>
+  
+  </div>
+ 
+    
+      
+      
+   
+    
+  
+  <td>  
+    <button (click)="removerVariables(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+   
+  </td>
+
+  
+</tbody>
+
+
+
+  
+    <button  (click)="guardar(variables)"> GUARDAR</button>>
+  
+
+
+
+  
+
+
+
+  

@@ -1,0 +1,104 @@
+<h2>My Heroes</h2>
+
+
+
+
+
+
+  <div><span>absctract </span></div>
+  <div>  
+    <label>Context:
+      <input [(ngModel)]="absctract.Context" placeholder="Context"/>
+    </label>
+    <label>Goal:
+      <input [(ngModel)]="absctract.Goal" placeholder="Goal"/>
+    </label>
+    <label>Method:
+      <input [(ngModel)]="absctract.Method" placeholder="Method"/>
+    </label>
+    <label>Result:
+      <input [(ngModel)]="absctract.Result" placeholder="Result"/>
+    </label>
+    <label>Conclusions:
+      <input [(ngModel)]="absctract.Conclusions" placeholder="Conclusions"/>
+    </label> </div>
+    <div><span>absctract </span></div>
+  <div>  
+    <label>   Analyce :  
+      <input [(ngModel)]="goal.analyce" placeholder="Context"/>
+    </label>
+    <label>for purpose of : 
+      <input [(ngModel)]="goal.purpose_of" placeholder="Goal"/>
+    </label>
+    <label>
+      With respect to
+      <input [(ngModel)]="goal.respect_to" placeholder="Method"/>
+    </label>
+    <label>  From the point of view of :
+      <input [(ngModel)]="goal.point_of_view" placeholder="Result"/>
+    </label>
+    <label> In the context of 
+      <input [(ngModel)]="goal.context_of" placeholder="Conclusions"/>
+    </label>
+
+  </div>
+  
+  <div><span>experimenters </span></div>
+  <button (click)="agregarExperimenters()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    +
+  </button>
+<tbody formArrayName="experimenters" *ngFor="let experimenters of experimenters; let i = index " >
+  
+  
+    
+    
+     
+      <td >        
+        <input [(ngModel)]="experimenters.name" placeholder="Name"/>
+      
+      </td>
+      
+      <td >      
+        <input [(ngModel)]="experimenters.email" placeholder="email"/> 
+        
+      </td>
+      
+      <td>  
+        <input [(ngModel)]="experimenters.organization" placeholder="organization"/>
+        
+      </td>
+     
+      <td >   
+        <input [(ngModel)]="experimenters.rol" placeholder="rol"/>    
+      
+      </td>
+      <td >   
+        <input [(ngModel)]="experimenters.task" placeholder="task"/>    
+      
+      </td>
+      
+      
+   
+    
+  
+  <td>  
+    <button (click)="removerExperimenters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+   
+  </td>
+
+  
+</tbody>
+
+
+
+  
+    <button  (click)="guardar(context)"> GUARDAR</button>>
+  
+
+
+
+  
+
+
+
+  
