@@ -3,9 +3,9 @@
 
 
 
+<mat-card>
 
-
-  <div><span>absctract </span></div>
+  <mat-label style="font-size: large; font-weight: bold;"><div><span>absctract </span></div> </mat-label>
   <div>  
     <label>Context:
       <input [(ngModel)]="absctract.Context" placeholder="Context"/>
@@ -22,7 +22,11 @@
     <label>Conclusions:
       <input [(ngModel)]="absctract.Conclusions" placeholder="Conclusions"/>
     </label> </div>
-    <div><span>absctract </span></div>
+  </mat-card>
+
+  <mat-card>
+    <mat-label  style="font-size: large; font-weight: bold;">
+    <div><span>Goal </span></div> </mat-label>
   <div>  
     <label>   Analyce :  
       <input [(ngModel)]="goal.analyce" placeholder="Context"/>
@@ -42,11 +46,26 @@
     </label>
 
   </div>
-  
-  <div><span>experimenters </span></div>
+</mat-card>
+<mat-card>
+  <mat-label  style="font-size: large; font-weight: bold;">
+  <span>experimenters </span>
   <button (click)="agregarExperimenters()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
+  </mat-label>
+  
+  <table>
+    <tr>
+      <th>name</th>
+      <th>email</th>
+      <th>organization</th>
+      <th>rol</th>
+      <th>task</th>
+    </tr>
+
+
+
 <tbody formArrayName="experimenters" *ngFor="let experimenters of experimenters; let i = index " >
   
   
@@ -88,11 +107,12 @@
 
   
 </tbody>
+  </table>
 
-
+</mat-card>
 
   
-    <button  (click)="guardar(context)"> GUARDAR</button>>
+    <button style="margin-left: 50%"  (click)="guardar(context)"> GUARDAR</button>
   
 
 

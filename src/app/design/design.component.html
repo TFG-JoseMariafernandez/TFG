@@ -1,24 +1,36 @@
 <h2>Design</h2>
 
 
-{{Variables}}
 
-
-
+<mat-label style="font-size: large; font-weight: bold;">
+  <span>Hypotheses </span>
+</mat-label>
   
  
  
   <button (click)="agregarDesign()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
+
+
+  <mat-card>
+    <table>
+      <tr>
+        <th>Design</th>
+        <th>Description</th>
+        <th>Parameters</th>
+        <th>Groups</th>
+        <th >Protocol</th>
+        <th > Bloquing Variables </th>
+      </tr>
 <tbody formArrayName="design" *ngFor="let design of Desing; let i = index " >
   
   
     
     
      
-      <td >  Name      
-        <input />
+      <td >  Design      
+      
         <select [(ngModel)]="design.design" placeholder="Design">
             <option value="Custom">Custom/Exhaustively described</option>
             <option value="Pre-test/post-test">Pre-test/post-test control group design</option>
@@ -39,6 +51,15 @@
         <button (click)="agregarParameters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
           +
         </button>
+        <mat-card>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+              <th>Description</th>
+              <th> measure In</th>
+           
+            </tr>
       <tbody formArrayName="parameter" *ngFor="let parameters of design.design_parameters; let p = index " >
         
         
@@ -66,6 +87,8 @@
              
             </td>
         </tbody>
+          </table>
+        </mat-card>
 
 </td>
 
@@ -88,6 +111,15 @@
     <button (click)="agregarGroups(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
     </button>
+    <mat-card>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Size</th>
+         
+       
+        </tr>
+    
   <tbody formArrayName="group" *ngFor="let group of design.groups; let g = index " >
     
     
@@ -108,9 +140,12 @@
          
         </td>
   </tbody>
+      </table>
+    </mat-card>
+    
   
 
-</td>
+
 
 <td>  Protocol
 
@@ -118,6 +153,14 @@
     <button (click)="agregarProtocol(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
     </button>
+    <mat-card>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          
+       
+        </tr>
   <tbody formArrayName="protocol" *ngFor="let protocol of design.protocols; let pr = index " >
     
     
@@ -138,15 +181,19 @@
          
         </td>
   </tbody>
+      </table>
+    </mat-card>
   
 
-</td>
-<td>  Bñloquing Variables 
+
+<td>  Bloquing Variables 
 
 
     <button (click)="agregarBloquingVars(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
     </button>
+    <mat-card>
+    
   <tbody formArrayName="var" *ngFor="let bloquingVar of design.BloquingVars; let bv = index " >
     
     
@@ -162,6 +209,7 @@
          
         </td>
   </tbody>
+    </mat-card>
   
   
 
@@ -178,10 +226,10 @@
   
 </tbody>
 
-
-
+    </table>
+</mat-card>
   
-    <button  (click)="guardar(Desing)"> GUARDAR</button>>
+    <button  style="margin-left: 50%" (click)="guardar(Desing)"> GUARDAR</button>
   
 
 

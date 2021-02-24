@@ -1,20 +1,13 @@
-<h2>Hypotheses</h2>
-
-
-
-
-
-
-
-  
  
-  
-  <div><span>Hypotheses </span></div>
+ 
+  <mat-label style="font-size: large; font-weight: bold;">
+  <span>Hypotheses </span>
   <button (click)="agregarHypotheses()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
+</mat-label>
 
-  
+  <mat-card>
   
   <tbody formArrayName="hypotheses" *ngFor="let hypothese of hypotheses; let i = index " >
     
@@ -26,7 +19,7 @@
       
       <td >   Type   
         
-        <select   [(ngModel)]="hypothese.description" placeholder="description">
+        <select   [(ngModel)]="hypothese.type" placeholder="description">
             <option value="impacted">Is impacted significatly by </option>
             <option value="Correloated">Is correloated with </option>
             <option value="Described">Described in natural language </option>
@@ -37,11 +30,11 @@
       </td>
       
       <td>  Description
-        <input [(ngModel)]="hypothese.type" placeholder="type"/>
+        <input [(ngModel)]="hypothese.description" placeholder="type"/>
         
       </td>
      
-      <td >   Type   
+      <td >   variable   
         
         <select  [(ngModel)]="hypothese.variable" placeholder="description">
             <option  *ngFor="let variable of Variable; let i = index " value="{{variable.name}}">{{variable.name}} </option>
@@ -67,9 +60,10 @@
 
   
   </tbody>
+</mat-card>
 
 
-  <button  (click)="guardar(hypotheses)"> GUARDAR</button>>
+  <button style="margin-left: 50%"(click)="guardar(hypotheses)"> GUARDAR</button>
   
   
 

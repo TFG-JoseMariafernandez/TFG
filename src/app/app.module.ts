@@ -12,6 +12,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { VariablesComponent } from './variables/variables.component';
 import { HypothesesComponent } from './hypotheses/hypotheses.component';
 import { DesignComponent } from './design/design.component';
+import {  MatCardModule} from "@angular/material/card";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
@@ -28,7 +32,11 @@ import { DesignComponent } from './design/design.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule,
+
     
   ],
   providers: [],

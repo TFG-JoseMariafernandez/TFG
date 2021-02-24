@@ -1,20 +1,20 @@
-<h2>My Heroes</h2>
-
-<div *ngIf="Contexto">
-{{Contexto.Absatract.Context}}
-</div>
-
-
-
-
 
   
- 
-  
-  <div><span>Types </span></div>
+  <mat-label style="font-size: large; font-weight: bold;" ><span>Variables </span></mat-label>
   <button (click)="agregarVariable()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
+  <mat-card>
+
+  <table>
+    <tr>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+      <th>domain</th>
+      <th >untis</th>
+    </tr>
+
 <tbody formArrayName="variable" *ngFor="let variable of variables; let i = index " >
   
   
@@ -74,12 +74,21 @@
     
     </div>
     <div *ngIf="variable.domain == domains[0].value">
+      <mat-card>
       <td>  Units
 
 
         <button (click)="agregarType(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
           +
         </button>
+        
+  <table>
+    <tr>
+      <th>name</th>
+      <th>description</th>
+    
+      <th >unti</th>
+    </tr>
       <tbody formArrayName="type" *ngFor="let type of variable.types; let j = index " >
         
         
@@ -90,7 +99,7 @@
               <input [(ngModel)]="type.name" placeholder="Name"/>
             
             </td>
-            <td >  Name      
+            <td >  Description      
               <input [(ngModel)]="type.description" placeholder="description"/>
             
             </td>
@@ -102,10 +111,14 @@
               <button (click)="removerType(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
              
             </td>
-      
+      </tbody>
+  </table>
 
 </td>
-  
+
+</mat-card>
+
+
   </div>
  
     
@@ -121,11 +134,11 @@
 
   
 </tbody>
+  </table>
+</mat-card>
 
 
-
-  
-    <button  (click)="guardar(variables)"> GUARDAR</button>>
+    <button  style="margin-left: 50%" (click)="guardar(variables)"> GUARDAR</button>
   
 
 
