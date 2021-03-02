@@ -15,6 +15,7 @@ import { DesignComponent } from './design/design.component';
 import {  MatCardModule} from "@angular/material/card";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AnalysesComponent } from './analyses/analyses.component';
 
 
 
@@ -25,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     VariablesComponent,
     HypothesesComponent,
     DesignComponent,
+    AnalysesComponent,
 
   ],
   imports: [

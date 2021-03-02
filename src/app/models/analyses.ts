@@ -12,9 +12,6 @@ export interface Analyses_table {
     table: Analyses_table[]
     
 }
-export interface Tables {
-  tablas: Analyses_table[]
-  
-}
+
 
   

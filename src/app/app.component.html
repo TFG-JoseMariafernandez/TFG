@@ -5,9 +5,10 @@
     <mat-tab label="Context"> <app-context [Variable]="VariableEnviado"  (enviar)="recibirContext($event)"  ></app-context> </mat-tab>
     <mat-tab label="Variable">  <app-variables [Contexto]="ContextEnviado" (enviar)="recibirVariable($event)"  ></app-variables> </mat-tab>
     <mat-tab label="Hypotheses">  <app-hypotheses [Variable]="VariableEnviado" (enviar)="recibirHypotheses($event)"   ></app-hypotheses> </mat-tab>
-    <mat-tab label="Design">  <app-design [Variables]="VariableEnviadoDes"    ></app-design> </mat-tab>
+    <mat-tab label="Design">  <app-design [Variables]="VariableEnviadoDes"   (enviar)="recibirDesign($event)"  ></app-design> </mat-tab>
+    <mat-tab label="Analyses">  <app-analyses     (enviar)="recibirAnalyses($event)"   ></app-analyses> </mat-tab>
     
-    <mat-tab label="JSON">  <pre>{{vercontextFinal | json}} {{VarFinal | json}}  {{hypothesesFinal | json}}    </pre> </mat-tab>
+    <mat-tab label="JSON">  <pre> {{experimentoFinal | json}}  </pre> </mat-tab>
   </mat-tab-group>
 
 

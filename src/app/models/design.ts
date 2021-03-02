@@ -1,3 +1,4 @@
+import { Expression } from "@angular/compiler";
 import { Variables } from "./variables";
 
 
@@ -12,10 +13,18 @@ export interface Group {
     size:string,
    
 }
+export interface Setting {
+    varName :string,
+    varValue:string,
+
+}
+
 export interface Protocol {
     name:string,
     type:string,
-//TODO:AÑADIR LA PARTE DE 
+    onGroup:Group,
+    settings:Setting[]
+
    
 }
 

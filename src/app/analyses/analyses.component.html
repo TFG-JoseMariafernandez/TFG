@@ -1,0 +1,104 @@
+
+  
+  <mat-label style="font-size: large; font-weight: bold;" ><span>Analyses </span></mat-label>
+  <button (click)="agregarAnalyses()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    +
+  </button>
+  <mat-card>
+
+  <table>
+    <tr>
+      <th>name</th>
+     
+      <th >Table</th>
+    </tr>
+
+<tbody formArrayName="analyse" *ngFor="let analyse of analyses; let i = index " >
+  
+  
+    
+    
+     
+      <td >  Name      
+        <input [(ngModel)]="analyse.name" placeholder="Name"/>
+      
+      </td>
+      <mat-card>
+      <td>  Tables
+
+
+        <button (click)="agregarTable(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          +
+        </button>
+        
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>analyses_type</th>
+      <th>details</th>
+      <th>data_spec</th>
+
+    </tr>
+      <tbody formArrayName="table" *ngFor="let table of analyse.table; let j = index " >
+        
+        
+          
+          
+           
+            <td >  Id      
+              <input [(ngModel)]="table.id" placeholder="Id"/>
+            
+            </td>
+            <td >  Analyses type      
+              <input [(ngModel)]="table.analyses_type" placeholder="analyses_type"/>
+            
+            </td>
+            <td >  Details      
+              <input [(ngModel)]="table.details" placeholder="details"/>
+            
+            </td>
+            <td >  Data spec      
+                <input [(ngModel)]="table.data_spec" placeholder="data_spec"/>
+              
+              </td>
+            <td>  
+              <button (click)="removerTables(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+             
+            </td>
+      </tbody>
+  </table>
+
+</td>
+
+</mat-card>
+
+
+
+ 
+    
+      
+      
+   
+    
+  
+  <td>  
+    <button (click)="removerAnalyses(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+   
+  </td>
+
+  
+</tbody>
+  </table>
+</mat-card>
+
+
+    <button  style="margin-left: 50%" (click)="guardar(analyses)"> GUARDAR</button>
+  
+
+
+
+  
+
+
+
+  

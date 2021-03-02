@@ -158,6 +158,8 @@
         <tr>
           <th>Name</th>
           <th>Type</th>
+          <th>On group</th>
+          <th>Settings</th>
           
        
         </tr>
@@ -175,6 +177,53 @@
           <input [(ngModel)]="protocol.type" placeholder="type"/>
         
         </td>
+        <td >  On group      
+      
+          <select [(ngModel)]="protocol.onGroup" placeholder="onGroup">
+            <option  *ngFor="let group of design.groups; let i = index " value="{{group}}">{{group.name}} </option>
+                       
+          </select>
+        
+        </td>
+
+        <td>  Setting
+
+
+          <button (click)="agregarSetting(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+            +
+          </button>
+          <mat-card>
+            <table>
+              <tr>
+                <th>VAR Name</th>
+                <th>VAR Value</th>
+         
+                
+             
+              </tr>
+        <tbody formArrayName="setting" *ngFor="let setting of protocol.settings; let st = index " >
+          
+          
+            
+            
+             
+              <td >  Name      
+                <input [(ngModel)]="setting.varName" placeholder="Name"/>
+              
+              </td>
+              <td >  type      
+                <input [(ngModel)]="setting.varValue" placeholder="type"/>
+              
+              </td>
+              
+            
+              <td>  
+                <button (click)="removerSetting(i,pr,st)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+               
+              </td>
+        </tbody>
+            </table>
+          </mat-card>
       
         <td>  
           <button (click)="removerProtocol(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>

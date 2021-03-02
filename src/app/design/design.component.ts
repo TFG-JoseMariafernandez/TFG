@@ -1,5 +1,5 @@
 
-import { Design_Parameters, Desing, Group, Protocol} from '../models/design';
+import { Design_Parameters,Setting, Desing, Group, Protocol} from '../models/design';
 import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import {Variables,Type}from '../models/variables'
 
@@ -61,11 +61,27 @@ export class DesignComponent implements OnInit {
     size:"",
    
 }];
+g:Group = {
+  name:"",
+  size:"",
+ 
+};
+settings: Setting[] = [ {
+  varName:"",
+  varValue:"",
+ 
+
+}];
  Protocol: Protocol[] = [ {
     name:"",
     type:"",
+    onGroup:this.g,
+    settings: this.settings
+
 
 }];
+
+
  Desing : Desing[] =  [{
     design: '',
     description:'',
@@ -121,9 +137,23 @@ this.DesignActual = DesignFormGroup;
     const ProtocolFormGroup  = ({
       name:"",
     type:"",
+    onGroup: this.g,
+   settings:[],
 
     });
     des.protocols.push(ProtocolFormGroup);  
+   
+    
+  }
+  agregarSetting(indice: number, indicePro: number  ){
+    const pro = this.Desing[indice].protocols[indicePro];
+   
+    const setFormGroup  = ({
+      varName:"",
+    varValue:"",
+   
+    });
+    pro.settings.push(setFormGroup);  
    
     
   }
@@ -170,6 +200,11 @@ this.DesignActual = DesignFormGroup;
     const vars = this.Desing[indiceDes];
 
     vars.groups.splice(indiceGroup,1)
+  }
+  removerSetting(indiceDes: number , indicePro : number , indiceSet :number) {
+    const vars = this.Desing[indiceDes].protocols[indicePro];
+
+    vars.settings.splice(indiceSet,1)
   }
   removerProtocol(indiceDes: number , indiceProtocol : number) {
     const vars = this.Desing[indiceDes];
