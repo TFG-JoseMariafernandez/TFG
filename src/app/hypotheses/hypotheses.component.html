@@ -7,17 +7,17 @@
   </button>
 </mat-label>
 
-  <mat-card>
+
   
-  <tbody formArrayName="hypotheses" *ngFor="let hypothese of hypotheses; let i = index " >
+  <div formArrayName="hypotheses" *ngFor="let hypothese of hypotheses; let i = index " >
     
-     
-      <td >  Name      
+    <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
+        Name      
         <input [(ngModel)]="hypothese.name" placeholder="Name"/>
       
-      </td>
+     
       
-      <td >   Type   
+      Type   
         
         <select   [(ngModel)]="hypothese.type" placeholder="description">
             <option value="impacted">Is impacted significatly by </option>
@@ -27,40 +27,39 @@
             
           </select>
         
-      </td>
+  
       
-      <td>  Description
+     Description
         <input [(ngModel)]="hypothese.description" placeholder="type"/>
         
-      </td>
+    
      
-      <td >   variable   
+        variable   
         
         <select  [(ngModel)]="hypothese.variable" placeholder="description">
             <option  *ngFor="let variable of Variable; let i = index " value="{{variable.name}}">{{variable.name}} </option>
                        
           </select>
         
-      </td>
+      
      
       
       
    
     
-  
-  <td>  
+
     <button (click)="removerHypotheses(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
    
-  </td>
-
-  
-
-
 
 
   
-  </tbody>
+
+
 </mat-card>
+
+  
+</div>
+
 
 
   <button style="margin-left: 50%"(click)="guardar(hypotheses)"> GUARDAR</button>

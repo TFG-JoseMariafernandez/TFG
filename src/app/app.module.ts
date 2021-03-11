@@ -13,6 +13,11 @@ import { VariablesComponent } from './variables/variables.component';
 import { HypothesesComponent } from './hypotheses/hypotheses.component';
 import { DesignComponent } from './design/design.component';
 import {  MatCardModule} from "@angular/material/card";
+import {
+  MatGridListModule,
+
+} from '@angular/material/grid-list';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AnalysesComponent } from './analyses/analyses.component';
@@ -38,6 +43,7 @@ import { AnalysesComponent } from './analyses/analyses.component';
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
+    MatGridListModule,
 
     
   ],

@@ -10,7 +10,7 @@ h1 {
     font-weight: lighter;
   }
   body {
-    margin: 2em;
+    background-color:rgb(184, 189, 190);
   }
   body, input[type="text"], button {
     color: #333;

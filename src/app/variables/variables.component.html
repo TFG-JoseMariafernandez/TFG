@@ -1,32 +1,25 @@
 
-  
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
   <mat-label style="font-size: large; font-weight: bold;" ><span>Variables </span></mat-label>
   <button (click)="agregarVariable()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
-  <mat-card>
+ 
 
-  <table>
-    <tr>
-      <th>name</th>
-      <th>type</th>
-      <th>description</th>
-      <th>domain</th>
-      <th >untis</th>
-    </tr>
+  
 
-<tbody formArrayName="variable" *ngFor="let variable of variables; let i = index " >
+<div formArrayName="variable" *ngFor="let variable of variables; let i = index " >
   
-  
+  <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
     
     
      
-      <td >  Name      
+      Name      
         <input [(ngModel)]="variable.name" placeholder="Name"/>
       
-      </td>
+     
 
-      <td >   Type
+      Type
        
         <select [(ngModel)]="variable.type" placeholder="type"  >
           <option value="Controllable_factor">Controllable factor </option>
@@ -36,13 +29,13 @@
           
         </select>   
       
-      </td>
+  
       
-      <td >   Description   
+   Description   
         <input [(ngModel)]="variable.description" placeholder="description"/> 
         
-      </td>
-      <td >   Domain
+  
+       Domain
       
       
         <select  [(ngModel)]="variable.domain" placeholder="domain">
@@ -51,13 +44,13 @@
             </option>
         </select>
       
-      </td>
+      
     
         
         
      
       <div *ngIf="variable.domain == domains[1].value">
-        <td>  Units
+       Units
 
 
 
@@ -70,11 +63,12 @@
         </select>
 
 
- </td>
+
     
     </div>
     <div *ngIf="variable.domain == domains[0].value">
-      <mat-card>
+      <p>
+        <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
       <td>  Units
 
 
@@ -82,41 +76,36 @@
           +
         </button>
         
-  <table>
-    <tr>
-      <th>name</th>
-      <th>description</th>
-    
-      <th >unti</th>
-    </tr>
-      <tbody formArrayName="type" *ngFor="let type of variable.types; let j = index " >
+
+   
+      <div formArrayName="type" *ngFor="let type of variable.types; let j = index " >
         
         
           
           
            
-            <td >  Name      
+         Name      
               <input [(ngModel)]="type.name" placeholder="Name"/>
             
-            </td>
-            <td >  Description      
+          
+    Description      
               <input [(ngModel)]="type.description" placeholder="description"/>
             
-            </td>
-            <td >  Name      
+       
+           Name      
               <input [(ngModel)]="type.unit" placeholder="unit"/>
             
-            </td>
-            <td>  
+        
+              
               <button (click)="removerType(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
              
-            </td>
-      </tbody>
-  </table>
+      </div>
+
 
 </td>
 
 </mat-card>
+      </p>
 
 
   </div>
@@ -127,23 +116,23 @@
    
     
   
-  <td>  
+  
     <button (click)="removerVariables(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
    
-  </td>
+
 
   
-</tbody>
-  </table>
+
+
+
 </mat-card>
-
-
+</div>
     <button  style="margin-left: 50%" (click)="guardar(variables)"> GUARDAR</button>
   
 
 
 
-  
+  </div>
 
 
 

@@ -4,27 +4,21 @@
   <button (click)="agregarAnalyses()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
-  <mat-card>
 
-  <table>
-    <tr>
-      <th>name</th>
-     
-      <th >Table</th>
-    </tr>
 
-<tbody formArrayName="analyse" *ngFor="let analyse of analyses; let i = index " >
+
+<div formArrayName="analyse" *ngFor="let analyse of analyses; let i = index " >
   
-  
+  <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
     
     
      
-      <td >  Name      
+      Name      
         <input [(ngModel)]="analyse.name" placeholder="Name"/>
       
-      </td>
-      <mat-card>
-      <td>  Tables
+   
+        <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218); margin-top: 2%;">
+        Tables
 
 
         <button (click)="agregarTable(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
@@ -68,7 +62,6 @@
       </tbody>
   </table>
 
-</td>
 
 </mat-card>
 
@@ -86,10 +79,10 @@
    
   </td>
 
-  
-</tbody>
-  </table>
-</mat-card>
+  </mat-card>
+</div>
+
+
 
 
     <button  style="margin-left: 50%" (click)="guardar(analyses)"> GUARDAR</button>

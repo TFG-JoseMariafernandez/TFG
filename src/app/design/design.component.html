@@ -1,9 +1,10 @@
-<h2>Design</h2>
+<body>
+<h1>Design</h1>
 
-
+<mat-card style="background-color:rgb(209, 209, 209);">
 
 <mat-label style="font-size: large; font-weight: bold;">
-  <span>Hypotheses </span>
+  <span>Design </span>
 </mat-label>
   
  
@@ -12,24 +13,18 @@
     +
   </button>
 
-
-  <mat-card>
-    <table>
-      <tr>
-        <th>Design</th>
-        <th>Description</th>
-        <th>Parameters</th>
-        <th>Groups</th>
-        <th >Protocol</th>
-        <th > Bloquing Variables </th>
-      </tr>
-<tbody formArrayName="design" *ngFor="let design of Desing; let i = index " >
+ 
   
   
+<div formArrayName="design" *ngFor="let design of Desing; let i = index " >
+  
+  <mat-card style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
+  <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
     
+
     
      
-      <td >  Design      
+       <h2>Design      </h2>
       
         <select [(ngModel)]="design.design" placeholder="Design">
             <option value="Custom">Custom/Exhaustively described</option>
@@ -39,211 +34,185 @@
             
           </select>
                  
-      </td>
       
-      <td >   Description   
+      
+        <h2>Description  </h2> 
         <input [(ngModel)]="design.description" placeholder="description"/> 
-        
-      </td>
-      <td>  Parameters
+      </mat-card>
+      
+       <h2> Parameters
 
 
         <button (click)="agregarParameters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
           +
         </button>
-        <mat-card>
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>Value</th>
-              <th>Description</th>
-              <th> measure In</th>
+      </h2>
+        <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+          
            
-            </tr>
-      <tbody formArrayName="parameter" *ngFor="let parameters of design.design_parameters; let p = index " >
+      <div formArrayName="parameter" *ngFor="let parameters of design.design_parameters; let p = index " >
         
         
           
           
            
-            <td >  Name      
+             Name      
               <input [(ngModel)]="parameters.name" placeholder="Name"/>
             
-            </td>
-            <td >  value      
+            
+             value      
               <input [(ngModel)]="parameters.value" placeholder="description"/>
             
-            </td>
-            <td >  description      
+            
+             description      
               <input [(ngModel)]="parameters.description" placeholder="description"/>
             
-            </td>
-            <td >  measure In       
+            
+             measure In       
                 <input [(ngModel)]="parameters.measure_in" placeholder="measure_in"/>
               
-              </td>
-            <td>  
+              
+              
               <button (click)="removerParameters(i,p)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
              
-            </td>
-        </tbody>
-          </table>
+            
+        </div>
+          
         </mat-card>
 
-</td>
+      <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
 
-<td >   Random Assignment   
+      <h2>Random Assignment </h2>  
     <input [(ngModel)]="design.random_assignment" placeholder="random_assignment"/> 
     
-  </td>
-  <td >   Description    of assignement
+  
+    Description    of assignement
     <input [(ngModel)]="design.description_assignmentMethod" placeholder="description_assignmentMethod"/> 
     
-  </td>
-
+  
+  </mat-card>
   
       
        
         
-  <td>  Groups
+<h2>Groups
 
 
     <button (click)="agregarGroups(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
-    </button>
-    <mat-card>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Size</th>
-         
-       
-        </tr>
+    </button></h2>
+    <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218); ">
+      
     
-  <tbody formArrayName="group" *ngFor="let group of design.groups; let g = index " >
+  <div formArrayName="group" *ngFor="let group of design.groups; let g = index " >
     
     
       
       
        
-        <td >  Name      
+         Name      
           <input [(ngModel)]="group.name" placeholder="Name"/>
         
-        </td>
-        <td >  size      
+        
+         size      
           <input [(ngModel)]="group.size" placeholder="size"/>
         
-        </td>
+        
       
-        <td>  
+          
           <button (click)="removerGroup(i,g)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
          
-        </td>
-  </tbody>
-      </table>
+        
+  </div>
+      
     </mat-card>
     
   
 
 
 
-<td>  Protocol
+  <h2>Protocol
 
 
     <button (click)="agregarProtocol(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
-    </button>
-    <mat-card>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>On group</th>
-          <th>Settings</th>
-          
-       
-        </tr>
-  <tbody formArrayName="protocol" *ngFor="let protocol of design.protocols; let pr = index " >
+    </button></h2>
+    <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+     
+  <div formArrayName="protocol" *ngFor="let protocol of design.protocols; let pr = index " >
     
     
       
       
        
-        <td >  Name      
+         Name      
           <input [(ngModel)]="protocol.name" placeholder="Name"/>
         
-        </td>
-        <td >  type      
+        
+         type      
           <input [(ngModel)]="protocol.type" placeholder="type"/>
         
-        </td>
-        <td >  On group      
+        
+         On group      
       
           <select [(ngModel)]="protocol.onGroup" placeholder="onGroup">
             <option  *ngFor="let group of design.groups; let i = index " value="{{group}}">{{group.name}} </option>
                        
           </select>
         
-        </td>
+        
 
-        <td>  Setting
+          Setting
 
 
           <button (click)="agregarSetting(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
             +
           </button>
-          <mat-card>
-            <table>
-              <tr>
-                <th>VAR Name</th>
-                <th>VAR Value</th>
-         
-                
-             
-              </tr>
-        <tbody formArrayName="setting" *ngFor="let setting of protocol.settings; let st = index " >
+          <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+           
+        <div formArrayName="setting" *ngFor="let setting of protocol.settings; let st = index " >
           
           
             
             
              
-              <td >  Name      
+               Name      
                 <input [(ngModel)]="setting.varName" placeholder="Name"/>
               
-              </td>
-              <td >  type      
+              
+               type      
                 <input [(ngModel)]="setting.varValue" placeholder="type"/>
               
-              </td>
+              
               
             
-              <td>  
+                
                 <button (click)="removerSetting(i,pr,st)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
                
-              </td>
-        </tbody>
-            </table>
+              
+        </div>
+            
           </mat-card>
       
-        <td>  
+          
           <button (click)="removerProtocol(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
          
-        </td>
-  </tbody>
-      </table>
+        
+  </div>
+      
     </mat-card>
   
 
 
-<td>  Bloquing Variables 
+  <h2> Bloquing Variables 
 
 
     <button (click)="agregarBloquingVars(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
-    </button>
-    <mat-card>
+    </button></h2>
+    <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
     
-  <tbody formArrayName="var" *ngFor="let bloquingVar of design.BloquingVars; let bv = index " >
+  <div formArrayName="var" *ngFor="let bloquingVar of design.BloquingVars; let bv = index " >
     
     
       
@@ -253,30 +222,30 @@
                    
       </select>
       
-        <td>  
+          
           <button (click)="removerVars(i,bv)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
          
-        </td>
-  </tbody>
+        
+  </div>
     </mat-card>
   
   
 
-</td>
+
   
     
     
   
-  <td>  
-    <button (click)="removerDesign(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+    
+    <button (click)="removerDesign(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon" style="margin-left: 40%;"> eliminar</button>
    
-  </td>
-
   
-</tbody>
+    
+  </mat-card>
+  
+</div>
 
-    </table>
-</mat-card>
+
   
     <button  style="margin-left: 50%" (click)="guardar(Desing)"> GUARDAR</button>
   
@@ -287,4 +256,5 @@
 
 
 
-  
+  </mat-card>
+</body>
