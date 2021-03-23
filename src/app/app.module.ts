@@ -21,6 +21,8 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AnalysesComponent } from './analyses/analyses.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 
 
@@ -44,6 +46,7 @@ import { AnalysesComponent } from './analyses/analyses.component';
     MatCardModule,
     MatInputModule,
     MatGridListModule,
+    CKEditorModule,
 
     
   ],

@@ -4,7 +4,8 @@ export interface Hypotheses {
     name: string,
     type:string,
     description:string,
-    variable:Variables
+    variable_outcome:Variables,
+    variable:Variables,
   
    
   }

@@ -5,7 +5,11 @@
     +
   </button>
 
-
+  <div *ngIf= "error">
+    <h1 style="color: red;" > {{errorMen}}</h1>
+  
+  
+  </div>
 
 <div formArrayName="analyse" *ngFor="let analyse of analyses; let i = index " >
   
@@ -15,6 +19,14 @@
      
       Name      
         <input [(ngModel)]="analyse.name" placeholder="Name"/>
+        <div *ngFor="let v of analyses; let varia = index " >
+          <div *ngIf="i !=varia" >
+          
+          <div *ngIf="analyses[i].name ===  analyses[varia].name" style="color: red;">
+            Error* el nombre esta repetido
+        </div>
+      </div>
+    </div>
       
    
         <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218); margin-top: 2%;">

@@ -29,6 +29,10 @@ export class AnalysesComponent implements OnInit {
 
   
 
+  error:Boolean | undefined;
+  
+  errorMen:String | undefined;
+  contadorRep:number = 0;
  
 
 
@@ -84,12 +88,28 @@ export class AnalysesComponent implements OnInit {
   }
 
   guardar(analyses: Analyses[]): void {
+    for (let i = 0; i < this.analyses.length; i++) {
+      for (let j = 0; j < this.analyses.length; j++) {
+      
+        if(i != j){
+        if(this.analyses[i].name == this.analyses[j].name){
+        this.errorMen ='El nombre de las variables estan repetidos';
+        this.error= true;
+        this.contadorRep ++;
+        console.log(this.contadorRep)
+      }
+      }
+      }
+    }
+    if(this.contadorRep == 0) {
+      this.error = false;
+      this.guarda = analyses;
+    
+      this.enviar.emit(this.guarda); 
+  }
+  this.contadorRep = 0;
  
-    this.guarda = analyses ;
-    console.log(this.guarda)
-    
-    this.enviar.emit(this.guarda); 
-    
+   
     
 
     

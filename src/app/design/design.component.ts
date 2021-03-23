@@ -2,6 +2,7 @@
 import { Design_Parameters,Setting, Desing, Group, Protocol} from '../models/design';
 import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import {Variables,Type}from '../models/variables'
+import { variable } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-design',
@@ -17,6 +18,9 @@ export class DesignComponent implements OnInit {
   Variables: Variables[] | undefined ;
 
   DesignActual:Desing | undefined;
+  random:boolean = false;
+  contador:number = 0;
+ 
 
   constructor() { }
 
@@ -25,7 +29,7 @@ export class DesignComponent implements OnInit {
   T:Type[]  =[ {
     name : '',
     description:'',
-    unit:''
+    ordered:false
     
     }];
 
@@ -36,6 +40,7 @@ export class DesignComponent implements OnInit {
     domain:' ',
     type: '',
     units:'',
+    domain_units:"",
     types: this.T,
 
   }];
@@ -46,6 +51,7 @@ export class DesignComponent implements OnInit {
     domain:' ',
     type: '',
     units:'',
+    domain_units:"",
     types: this.T,
 
   };
@@ -86,7 +92,7 @@ settings: Setting[] = [ {
     design: '',
     description:'',
     design_parameters :this.Design_Parameters,
-    random_assignment:'',
+    random_assignment:false,
     description_assignmentMethod:'',
     BloquingVars:this.var,
     groups:this.Group,
@@ -102,13 +108,14 @@ settings: Setting[] = [ {
       design: '',
       description:'',
       design_parameters :[],
-      random_assignment:'',
+      random_assignment:false,
       description_assignmentMethod:'',
       BloquingVars:[],
       groups:[],
       protocols:[]
     });
-
+  
+console.log(DesignFormGroup)
 this.DesignActual = DesignFormGroup;
     this.Desing.push(DesignFormGroup);
 
@@ -171,30 +178,26 @@ this.DesignActual = DesignFormGroup;
   }
   agregarBloquingVars(indice: number){
     const des = this.Desing[indice];
-    let variableFin : Variables;
-    this.var = this.Variables!
-    console.log(this.Variables)
-    console.log(this.var)
     
-    const v = {  name: '',
-    description: ' ',
-    domain:' ',
-    type: '',
-    units:'',
-    types: this.T}
+   
 
-   // variableFin = this.Variables?.find(element => element.name == v.name)!
-    console.log(this.var.find(element => element.name == v.name));
+    
+    const v = this.va
+    
+
+    var variableFin = this.Variables?.find(element => element.name == v.name);
+   
  
   
-    des.BloquingVars.push(this.var.find(element => element.name == v.name)!);  
+    des.BloquingVars.push(v);  
+    this.contador++
    
     
   }
   removerVars(indiceDes: number , indicevars : number) {
     const vars = this.Desing[indiceDes];
 
-    vars.protocols.splice(indicevars,1)
+    vars.BloquingVars.splice(indicevars,1)
   }
   removerGroup(indiceDes: number , indiceGroup : number) {
     const vars = this.Desing[indiceDes];

@@ -7,13 +7,27 @@
   </button>
 </mat-label>
 
+<div *ngIf= "error">
+  <h1 style="color: red;" > {{errorMen}}</h1>
 
+
+</div>
   
   <div formArrayName="hypotheses" *ngFor="let hypothese of hypotheses; let i = index " >
+    
+  
     
     <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
         Name      
         <input [(ngModel)]="hypothese.name" placeholder="Name"/>
+        <div *ngFor="let v of hypotheses; let varia = index " >
+          <div *ngIf="i !=varia" >
+          
+          <div *ngIf="hypotheses[i].name ===  hypotheses[varia].name" style="color: red;">
+            Error* el nombre esta repetido
+        </div>
+      </div>
+    </div>
       
      
       
@@ -34,7 +48,7 @@
         
     
      
-        variable   
+        variable    outcome
         
         <select  [(ngModel)]="hypothese.variable" placeholder="description">
             <option  *ngFor="let variable of Variable; let i = index " value="{{variable.name}}">{{variable.name}} </option>
@@ -42,7 +56,11 @@
           </select>
         
       
-     
+     variable
+      <select  [(ngModel)]="hypothese.variable_outcome" placeholder="description">
+      <option  *ngFor="let variableOut of Variable_Outcome ; let j = index " value="{{variableOut.name}}">{{variableOut.name}} </option>
+                 
+    </select>
       
       
    

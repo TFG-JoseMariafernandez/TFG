@@ -63,7 +63,7 @@ context : Context = {
 T:Type[]  =[ {
   name : '',
   description:'',
-  unit:''
+  ordered:false
   
   }];
 
@@ -74,6 +74,7 @@ var: Variables[] =[{
   domain:' ',
   type: '',
   units:'',
+  domain_units:"",
   types: this.T,
 
 }];
@@ -84,6 +85,7 @@ va: Variables ={
   domain:' ',
   type: '',
   units:'',
+  domain_units:"",
   types: this.T,
 
 };
@@ -123,7 +125,7 @@ Desing : Desing[] =  [{
   design: '',
   description:'',
   design_parameters :this.Design_Parameters,
-  random_assignment:'',
+  random_assignment:false,
   description_assignmentMethod:'',
   BloquingVars:this.var,
   groups:this.Group,
@@ -134,7 +136,7 @@ Desing : Desing[] =  [{
 THyp:Type[]  =[ {
   name : '',
   description:'',
-  unit:''
+  ordered:false
   
   }];
 
@@ -145,6 +147,7 @@ varEx: Variables ={
   domain:' ',
   type: '',
   units:'',
+  domain_units:"",
   types: this.T,
 
 };
@@ -155,6 +158,7 @@ hypotheses: Hypotheses[] = [{
   type: ' ',
   description:' ',
   variable: this.varEx, 
+  variable_outcome: this.varEx,
 
 }];
 
@@ -180,6 +184,7 @@ experimentoFinal: JSON | undefined;
 
 ContextEnviado:Context | undefined;
   VariableEnviado: Variables[] | undefined;
+  VariableOutcomeEnviado: Variables[] | undefined;
 HypothesesEnviado:Hypotheses[] | undefined;
 AnalysesEnviado:Analyses[] | undefined;
 DesignsEnviado:Desing[] | undefined;
@@ -204,16 +209,18 @@ VariableEnviadoDes:Variables[] | undefined;
 
   recibirVariable(mensaje:Variables[]){
     const varValidas = []
+    const varValidasOutcome = []
     
     for (let index = 0; index < mensaje.length; index++) {
      if(mensaje[index].type == "OutCome"){
       varValidas.push(mensaje[index])
   
-      }
-     
-      
+      }else{
+    varValidasOutcome.push(mensaje[index])
+  }
     }
     this.VariableEnviado = varValidas;
+    this.VariableOutcomeEnviado = varValidasOutcome;
    this.VariableEnviadoDes = mensaje;
     
     

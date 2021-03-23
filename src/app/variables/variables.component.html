@@ -4,9 +4,12 @@
   <button (click)="agregarVariable()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
+
+  <div *ngIf= "error">
+    <h1 style="color: red;" > {{errorMen}}</h1>
  
 
-  
+  </div>
 
 <div formArrayName="variable" *ngFor="let variable of variables; let i = index " >
   
@@ -16,8 +19,15 @@
      
       Name      
         <input [(ngModel)]="variable.name" placeholder="Name"/>
-      
-     
+        <div *ngFor="let v of variables; let varia = index " >
+        <div *ngIf="i !=varia" >
+        
+        <div *ngIf="variables[i].name ===  variables[varia].name" style="color: red;">
+          Error* el nombre esta repetido
+      </div>
+    </div>
+  </div>
+    
 
       Type
        
@@ -28,11 +38,13 @@
           <option value="Nuisance">Nuisance ( a.k.a moderating variable)</option>
           
         </select>   
+        <div *ngIf="variable.type != 'OutCome'">
       
   
       
    Description   
         <input [(ngModel)]="variable.description" placeholder="description"/> 
+        <ckeditor config.width = '75%'    [editor]="Editor" [(ngModel)]="variable.description" placeholder="description"></ckeditor>
         
   
        Domain
@@ -50,15 +62,16 @@
         
      
       <div *ngIf="variable.domain == domains[1].value">
-       Units
+      Domain units
 
 
 
        
-        <select [(ngModel)]="variable.units" placeholder="units">
+        <select [(ngModel)]="variable.domain_units" placeholder="units">
           <option value="Float">Float</option>
           <option value="Integer">Integer</option>
           <option value="String">String</option>
+          <option value="Boolean">Boolean</option>
           
         </select>
 
@@ -67,9 +80,10 @@
     
     </div>
     <div *ngIf="variable.domain == domains[0].value">
+     
       <p>
         <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
-      <td>  Units
+      <td>  Domain
 
 
         <button (click)="agregarType(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
@@ -80,9 +94,14 @@
    
       <div formArrayName="type" *ngFor="let type of variable.types; let j = index " >
         
-        
+        Ordered
+        <select [(ngModel)]="type.ordered" placeholder="units">
+          <option value= true >True</option>
+          <option value= false >False</option>
+         
           
-          
+        </select>
+      
            
          Name      
               <input [(ngModel)]="type.name" placeholder="Name"/>
@@ -92,8 +111,6 @@
               <input [(ngModel)]="type.description" placeholder="description"/>
             
        
-           Name      
-              <input [(ngModel)]="type.unit" placeholder="unit"/>
             
         
               
@@ -109,12 +126,16 @@
 
 
   </div>
- 
+  
+      
+  Units   
+  <input [(ngModel)]="variable.units" placeholder="units"/> 
     
       
       
    
-    
+    </div>
+
   
   
     <button (click)="removerVariables(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>

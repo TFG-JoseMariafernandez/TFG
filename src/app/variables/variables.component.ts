@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import {Variables,Type}from '../models/variables'
 import {Context}from '../models/context'
+import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 
 
@@ -10,10 +11,19 @@ import {Context}from '../models/context'
   styleUrls: ['./variables.component.css']
 })
 export class VariablesComponent implements OnInit {
+  public Editor = DecoupledEditor;
+
+    public onReady( editor ) {
+        editor.ui.getEditableElement().parentElement.insertBefore(
+            editor.ui.view.toolbar.element,
+            editor.ui.getEditableElement()
+        );
+    }
+
   T:Type[]  =[ {
     name : '',
     description:'',
-    unit:''
+    ordered: false,
     
     }];
   
@@ -24,6 +34,7 @@ export class VariablesComponent implements OnInit {
     domain:' ',
     type: '',
     units:'',
+    domain_units:"",
     types: this.T,
 
   }];
@@ -35,6 +46,10 @@ export class VariablesComponent implements OnInit {
   ];
   varActual : Variables | undefined ;
 
+  error:Boolean | undefined;
+  
+  errorMen:String | undefined;
+  contadorRep:number = 0;
 
   
   
@@ -70,11 +85,14 @@ export class VariablesComponent implements OnInit {
     domain:' ',
     type: '',
     units:'',
+    domain_units:"",
     types:[],
     });
+   
+    this.varActual = variablessFormGroup;
+        this.variables.push(variablessFormGroup);
 
-this.varActual = variablessFormGroup;
-    this.variables.push(variablessFormGroup);
+
 
     
 
@@ -87,7 +105,7 @@ this.varActual = variablessFormGroup;
     const typeFormGroup  = ({
       name: '',
     description: ' ',
-    unit:'',
+    ordered:false,
    
     });
     vars.types.push(typeFormGroup);  
@@ -105,10 +123,28 @@ this.varActual = variablessFormGroup;
   }
 
   guardar(variables: Variables[]): void {
- 
-    this.guarda = variables;
+    for (let i = 0; i < this.variables.length; i++) {
+      for (let j = 0; j < this.variables.length; j++) {
+      
+        if(i != j){
+        if(this.variables[i].name == this.variables[j].name){
+        this.errorMen ='El nombre de las variables estan repetidos';
+        this.error= true;
+        this.contadorRep ++;
+        console.log(this.contadorRep)
+      }
+      }
+      }
+    }
+    if(this.contadorRep == 0) {
+      this.error = false;
+      this.guarda = variables;
     
-    this.enviar.emit(this.guarda); 
+      this.enviar.emit(this.guarda); 
+  }
+  this.contadorRep = 0;
+ 
+    
     
     
 

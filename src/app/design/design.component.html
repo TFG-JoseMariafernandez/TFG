@@ -83,17 +83,23 @@
       <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
 
       <h2>Random Assignment </h2>  
-    <input [(ngModel)]="design.random_assignment" placeholder="random_assignment"/> 
+      <select [(ngModel)]="design.random_assignment" placeholder="random_assignment">
+        <option value= true>true</option>
+        <option value= false >false</option>
+      </select>
+     {{ design.random_assignment}}
+    <div *ngIf="design.random_assignment">
     
   
     Description    of assignement
     <input [(ngModel)]="design.description_assignmentMethod" placeholder="description_assignmentMethod"/> 
     
-  
+  </div>
+
   </mat-card>
   
       
-       
+       <div *ngIf = " design.design == 'Custom'">
         
 <h2>Groups
 
@@ -126,11 +132,12 @@
   </div>
       
     </mat-card>
+  </div>
     
   
 
 
-
+  <div *ngIf = " design.design == 'Custom'">
   <h2>Protocol
 
 
@@ -150,7 +157,13 @@
         
         
          type      
-          <input [(ngModel)]="protocol.type" placeholder="type"/>
+          
+          <select  [(ngModel)]="protocol.type" placeholder="type">
+            <option value="Treatment">Treatment</option>
+            <option value="Measurement">Measurement</option>
+            <option value="Treatment_&_Measurement">Treatment & Measurement </option>
+            
+          </select>
         
         
          On group      
@@ -201,15 +214,18 @@
   </div>
       
     </mat-card>
-  
+  </div>
 
+  <div *ngIf = " design.design == 'Custom'">
+  <h2> Bloquing Variables  {{ Variables?.length}}
 
-  <h2> Bloquing Variables 
 
 
     <button (click)="agregarBloquingVars(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
-    </button></h2>
+    </button> 
+</h2>
+
     <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
     
   <div formArrayName="var" *ngFor="let bloquingVar of design.BloquingVars; let bv = index " >
@@ -218,9 +234,11 @@
       
       
     <select [(ngModel)]="bloquingVar.name" placeholder="description">
-        <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}} </option>
+        <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
+      
                    
       </select>
+    
       
           
           <button (click)="removerVars(i,bv)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
@@ -228,6 +246,7 @@
         
   </div>
     </mat-card>
+  </div>
   
   
 

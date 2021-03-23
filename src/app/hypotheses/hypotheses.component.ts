@@ -13,12 +13,14 @@ export class HypothesesComponent implements OnInit {
   selectedCon: Hypotheses | undefined;
   guarda!: Hypotheses[];
   @Input()
-  Variable: Variables[] | undefined;
+  Variable: Variables[] | undefined; 
+  @Input()
+  Variable_Outcome: Variables[] | undefined;
 
   T:Type[]  =[ {
     name : '',
     description:'',
-    unit:''
+    ordered:false
     
     }];
 
@@ -29,6 +31,7 @@ export class HypothesesComponent implements OnInit {
     domain:' ',
     type: '',
     units:'',
+    domain_units:"",
     types: this.T,
 
   };
@@ -38,21 +41,17 @@ export class HypothesesComponent implements OnInit {
     name: '',
     type: ' ',
     description:' ',
+    variable_outcome: this.var, 
     variable: this.var, 
 
   }];
 
+  error:Boolean | undefined;
+  
+  errorMen:String | undefined;
+  contadorRep:number = 0;
 
   
-
-  
-
- 
-
-  
-
-
-
   constructor() { }
 
   ngOnInit() {
@@ -70,11 +69,30 @@ export class HypothesesComponent implements OnInit {
     
   }
   guardar(hypotheses: Hypotheses[]): void {
+    for (let i = 0; i < this.hypotheses.length; i++) {
+      for (let j = 0; j < this.hypotheses.length; j++) {
+        if(i != j){
+          if(this.hypotheses[i].name == this.hypotheses[j].name){
+          this.errorMen ='El nombre de las hipotesis estan repetidos';
+          this.error= true;
+          this.contadorRep ++;
+         
+        }
+        }
+        }
+      }
+      if(this.contadorRep == 0) {
  
-    this.guarda = hypotheses;
-    console.log(this.guarda)
-    this.enviar.emit(this.guarda); 
-    
+        this.guarda = hypotheses;
+        console.log(this.guarda)
+        this.enviar.emit(this.guarda); 
+        
+    }
+    this.contadorRep = 0;
+   
+      
+      
+ 
     
 
     
@@ -84,7 +102,8 @@ export class HypothesesComponent implements OnInit {
       name: '',
     type: ' ',
     description:' ',
-    variable: this.var
+    variable: this.var,
+    variable_outcome: this.var, 
     
     });
 

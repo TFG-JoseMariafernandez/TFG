@@ -32,7 +32,7 @@ export interface Desing {
     design: string,
     description:string,
     design_parameters :Design_Parameters[],
-    random_assignment:string,
+    random_assignment:boolean,
     description_assignmentMethod:string,
     BloquingVars:Variables[],
     groups:Group[],
