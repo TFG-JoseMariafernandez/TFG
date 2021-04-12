@@ -37,42 +37,249 @@
           +
         </button>
         
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>analyses_type</th>
-      <th>details</th>
-      <th>data_spec</th>
-
-    </tr>
-      <tbody formArrayName="table" *ngFor="let table of analyse.table; let j = index " >
+  
+      <div formArrayName="table" *ngFor="let table of analyse.table; let j = index " >
         
         
           
           
            
-            <td >  Id      
+             Id      
               <input [(ngModel)]="table.id" placeholder="Id"/>
             
-            </td>
-            <td >  Analyses type      
-              <input [(ngModel)]="table.analyses_type" placeholder="analyses_type"/>
-            
-            </td>
-            <td >  Details      
-              <input [(ngModel)]="table.details" placeholder="details"/>
-            
-            </td>
-            <td >  Data spec      
-                <input [(ngModel)]="table.data_spec" placeholder="data_spec"/>
+             Analyses type      
               
-              </td>
-            <td>  
+              <select [(ngModel)]="table.analyses_type" placeholder="analyses_type">
+                <option value="Mean">Mean</option>
+                <option value="Median">Median</option>
+                <option value="Mode">Mode </option>
+                <option value="standar_deviation">standar_deviation</option>
+                <option value="inter_quartitle_range">inter_quartitle_range</option>
+                <option value="range">range</option>
+                <option value="ranking">ranking</option>
+                <option value="confidence_interval">confidence_interval</option>
+                <option value="correlation">correlation</option>
+                <option value="null_hypothesis_test">null_hypothesis_test</option>
+                <option value="r_script">r_script</option>
+                <option value="box_plot">box_plot</option>
+                <option value="histogram">histogram</option>
+                <option value="scatter_plot">scatter_plot</option>
+                
+
+                
+              </select>
+            
+            
+           
+              
+              <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
+              Details
+             <div *ngIf="table.analyses_type == 'null_hypothesis_test' ">
+               Test
+              <select [(ngModel)]="table.test" placeholder="details">
+                <option value="kilmogorov-smirnov">kilmogorov-smirnov</option>
+                <option value="levene">levene</option>
+                <option value="t-student">t-student </option>
+                <option value="anova">anova</option>
+                <option value="wilcoxon">wilcoxon</option>                
+              </select>
+              <div *ngIf="table.test == 'anova'">
+                Alpha
+                <input [(ngModel)]="table.alpha" placeholder="Name"/>
+
+              </div>
+            </div>
+            
+              </mat-card>
+              Data spec :     
+              <select [(ngModel)]="group_Var" placeholder="group_var">
+
+                  <option value="group">Groups</option>
+                  <option value="vars">Variables</option>
+                     
+                </select>
+                           
+             <div *ngIf="group_Var == 'group'">
+
+              OF: 
+              
+              <div  *ngIf = "contador_of_g != Groups?.length && Groups?.length " >
+               <button (click)="agregarOfGroup(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                 +
+               </button> 
+              </div>
+   
+           
+               <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+               
+             <div formArrayName="var" *ngFor="let d of table.data_spec.of_group; let bv = index " >
+           
+               
+                 
+               <select [(ngModel)]="d.name" placeholder="variable name">
+                 <option  *ngFor="let group of Groups; let i = index " value="{{group.name}}">{{group.name}}   </option>
+               
+                            
+               </select>
+              
+               
+                 
+                     
+                     <button (click)="removerOfGroup(i,bv,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+                    
+                   
+             </div>
+               </mat-card>
+               BY: 
+             
+               <div  *ngIf = " contador_By_g != Groups?.length && Groups?.length " >
+                <button (click)="agregarByGroup(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  +
+                </button> 
+               </div>
+    
+            
+                <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+                
+              <div formArrayName="var" *ngFor="let d of table.data_spec.by_group; let bv = index " >
+            
+                
+                  
+                <select [(ngModel)]="d.name" placeholder="variable name">
+                  <option  *ngFor="let group of Groups; let i = index " value="{{group.name}}">{{group.name}}   </option>
+                
+                             
+                </select>
+               
+                
+                  
+                      
+                      <button (click)="removerByGroup(i,bv,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+                     
+                    
+              </div>
+                </mat-card>
+
+             </div>
+             <div *ngIf="group_Var == 'vars'">
+               OF: {{contador_of}}
+              
+               <div  *ngIf = " contador_of != Variables?.length && Variables?.length " >
+                <button (click)="agregarOfVars(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  +
+                </button> 
+               </div>
+    
+            
+                <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+                
+              <div formArrayName="var" *ngFor="let d of table.data_spec.of_variable; let bv = index " >
+            
+                
+                  
+                <select [(ngModel)]="d.name" placeholder="variable name">
+                  <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
+                
+                             
+                </select>
+               
+                
+                  
+                      
+                      <button (click)="removerOfVars(i,bv,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+                     
+                    
+              </div>
+                </mat-card>
+                BY: {{contador_By}}
+              
+                <div  *ngIf = " contador_By != Variables?.length && Variables?.length " >
+                 <button (click)="agregarByVars(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                   +
+                 </button> 
+                </div>
+     
+             
+                 <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+                 
+               <div formArrayName="var" *ngFor="let d of table.data_spec.by_variable; let bv = index " >
+             
+                 
+                   
+                 <select [(ngModel)]="d.name" placeholder="variable name">
+                   <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
+                 
+                              
+                 </select>
+                
+                 
+                   
+                       
+                       <button (click)="removerByVars(i,bv,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+                      
+                     
+               </div>
+                 </mat-card>
+
+              
+
+                Having: 
+              
+                <div  *ngIf = " contador_Having != Variables?.length && Variables?.length " >
+                <button (click)="agregarHaving(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  +
+                </button> 
+                </div>
+           
+    
+            
+                <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+                
+              <div formArrayName="var" *ngFor="let hav of table.data_spec.having; let bv = index " >
+                
+                
+                  
+                  
+                <select [(ngModel)]="hav.var" placeholder="variable name">
+                    <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
+                  
+                               
+                  </select>
+                  <select [(ngModel)]="hav.operator" placeholder="group_var">
+
+                    <option value="=">=</option>
+                 
+                    <option value=">='"> >= </option>
+                    <option value=">'"> > </option>                   
+                       
+                  </select>
+                  <input [(ngModel)]="hav.value" placeholder="Name"/>
+                  
+
+                
+                  
+                      
+                      <button (click)="removerHaving(i,bv,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+                     
+                    
+              </div>
+                </mat-card>
+              
+              
+              
+            
+
+
+             </div>
+             
+              
+          
+         
               <button (click)="removerTables(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
              
-            </td>
-      </tbody>
-  </table>
+            
+            </div>
+
 
 
 </mat-card>
@@ -86,10 +293,10 @@
    
     
   
-  <td>  
+
     <button (click)="removerAnalyses(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
    
-  </td>
+
 
   </mat-card>
 </div>

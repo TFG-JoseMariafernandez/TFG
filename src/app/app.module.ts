@@ -23,6 +23,9 @@ import { MatInputModule } from '@angular/material/input';
 import { AnalysesComponent } from './analyses/analyses.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
+//import {DecoupledEditor} from '@ckeditor/ckeditor5-build-decoupled-document'
+
+
 
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import {Variables,Type}from '../models/variables'
 import {Context}from '../models/context'
-import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 
@@ -11,14 +11,8 @@ import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
   styleUrls: ['./variables.component.css']
 })
 export class VariablesComponent implements OnInit {
-  public Editor = DecoupledEditor;
-
-    public onReady( editor ) {
-        editor.ui.getEditableElement().parentElement.insertBefore(
-            editor.ui.view.toolbar.element,
-            editor.ui.getEditableElement()
-        );
-    }
+  public Editor = ClassicEditor;
+  
 
   T:Type[]  =[ {
     name : '',
@@ -40,7 +34,7 @@ export class VariablesComponent implements OnInit {
   }];
   
   domains  = [
-    {value: 'One_of ', viewValue: 'One of'},
+    {value: 'One_of', viewValue: 'One of'},
     {value: 'Of_type', viewValue: 'of type'},
     
   ];

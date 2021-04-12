@@ -7,8 +7,14 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lite": "lite-server",
+    "postinstall": "ng build --prod"
+
+   
+ 
   },
+  
   "private": true,
   "dependencies": {
     "@angular/animations": "^11.1.2",
@@ -22,11 +28,16 @@
     "@angular/platform-browser-dynamic": "^11.1.2",
     "@angular/router": "^11.1.2",
     "@ckeditor/ckeditor5-angular": "^2.0.1",
-    "@ckeditor/ckeditor5-build-classic": "^26.0.0",
-    "@ckeditor/ckeditor5-build-decoupled-document": "^26.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^23.1.0",
+    "@ckeditor/ckeditor5-build-decoupled-document": "^23.1.0",
     "@types/ckeditor": "^4.9.10",
+    "@types/ckeditor__ckeditor5-core": "^11.0.4",
+    "angular-bootstrap-md": "^11.0.0",
     "angular-cli": "^1.0.0-beta.28.3",
     "angular-material": "^1.2.2",
+    "express": "^4.17.1",
+    "mdbootstrap": "^4.19.2",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "^0.11.4"
@@ -49,5 +60,9 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "^4.1.5"
+  },
+  "engines": {
+    "node": "10.14.2",
+      "npm": "6.4.1"
   }
 }

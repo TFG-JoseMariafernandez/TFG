@@ -2,7 +2,9 @@
 import { Design_Parameters,Setting, Desing, Group, Protocol} from '../models/design';
 import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import {Variables,Type}from '../models/variables'
-import { variable } from '@angular/compiler/src/output/output_ast';
+
+
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-design',
@@ -10,12 +12,16 @@ import { variable } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./design.component.css']
 })
 export class DesignComponent implements OnInit {
+  public Editor = ClassicEditor;
+
   @Output()
   enviar: EventEmitter<Desing[]> = new EventEmitter<Desing[]>();
   selectedCon: Desing | undefined;
   guarda!: Desing[];
   @Input()
   Variables: Variables[] | undefined ;
+  @Input()
+  Variable_Outcome: Variables[] | undefined ;
 
   DesignActual:Desing | undefined;
   random:boolean = false;
@@ -75,6 +81,7 @@ g:Group = {
 settings: Setting[] = [ {
   varName:"",
   varValue:"",
+  varOutcome:""
  
 
 }];
@@ -94,14 +101,77 @@ settings: Setting[] = [ {
     design_parameters :this.Design_Parameters,
     random_assignment:false,
     description_assignmentMethod:'',
-    BloquingVars:this.var,
+    BloquingVars:[],
     groups:this.Group,
     protocols:this.Protocol
   
    
   }]
+  comprobacion: boolean = true ;
+  errorMen:String | undefined;
 
+
+ valorvariable(NameVari:string , value:any){
+   const vari = this.Variables?.find(x => x.name == NameVari);
+   console.log(vari)
+  
+   var bol: boolean = false
+   const regex = /^[0-9]*$/;
  
+   if(vari?.domain == "Of_type"){
+    
+     if(vari?.domain_units == "Integer"){
+       
+      bol= regex.test(value);
+
+     } if(vari?.domain_units == "Float"){
+       console.log('enytra en float')
+      
+       var valor = parseFloat(value);
+      if( valor ){
+      bol=true
+    }
+
+  
+
+     } if(vari?.domain_units == "Boolean"){
+      console.log('enytra en boolean')
+       
+      if ( value == 'true' || value == 'false'){
+        bol = true
+      }
+
+     } if(vari?.domain_units == "String"){
+       
+      bol= true;
+
+     }
+
+    
+    
+   }if(vari?.domain == "One_of" ){
+
+     for (let index = 0; index < vari?.types.length; index++) {
+       const element = vari?.types[index];
+ 
+
+       if(element.name == value){
+
+       bol =true
+      
+     
+     }
+    }
+   }
+
+
+
+this.comprobacion = bol;
+console.log(this.comprobacion)
+
+return bol;
+
+ }
 
   agregarDesign(){
     const DesignFormGroup  = ({
@@ -115,7 +185,7 @@ settings: Setting[] = [ {
       protocols:[]
     });
   
-console.log(DesignFormGroup)
+
 this.DesignActual = DesignFormGroup;
     this.Desing.push(DesignFormGroup);
 
@@ -158,6 +228,7 @@ this.DesignActual = DesignFormGroup;
     const setFormGroup  = ({
       varName:"",
     varValue:"",
+    varOutcome:"",
    
     });
     pro.settings.push(setFormGroup);  
@@ -179,24 +250,19 @@ this.DesignActual = DesignFormGroup;
   agregarBloquingVars(indice: number){
     const des = this.Desing[indice];
     
-   
-
+    const var_of ={
+      name:''
+    } 
     
-    const v = this.va
     
-
-    var variableFin = this.Variables?.find(element => element.name == v.name);
-   
- 
-  
-    des.BloquingVars.push(v);  
+   des.BloquingVars.push(var_of)
     this.contador++
    
     
   }
   removerVars(indiceDes: number , indicevars : number) {
     const vars = this.Desing[indiceDes];
-
+    this.contador --
     vars.BloquingVars.splice(indicevars,1)
   }
   removerGroup(indiceDes: number , indiceGroup : number) {
@@ -226,13 +292,17 @@ this.DesignActual = DesignFormGroup;
   }
 
   guardar(design: Desing[]): void {
+    console.log(this.comprobacion)
+    if(this.comprobacion){
  
     this.guarda = design;
     console.log(this.guarda)
     
     this.enviar.emit(this.guarda); 
     
-    
+  }else{
+    this.errorMen = 'EL valor de la variable no es coherente con su dominio'
+  }
 
     
   }

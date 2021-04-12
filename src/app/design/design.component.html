@@ -12,6 +12,11 @@
   <button (click)="agregarDesign()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
+  <div *ngIf= "!comprobacion">
+    <h1 style="color: red;" >   {{errorMen}}</h1>
+ 
+
+  </div>
 
  
   
@@ -24,7 +29,7 @@
 
     
      
-       <h2>Design      </h2>
+       <h2>Design     </h2>
       
         <select [(ngModel)]="design.design" placeholder="Design">
             <option value="Custom">Custom/Exhaustively described</option>
@@ -37,7 +42,8 @@
       
       
         <h2>Description  </h2> 
-        <input [(ngModel)]="design.description" placeholder="description"/> 
+        
+        <ckeditor  max-width= 50%;    [editor]="Editor" [(ngModel)]="design.description" placeholder="description"></ckeditor>
       </mat-card>
       
        <h2> Parameters
@@ -84,11 +90,11 @@
 
       <h2>Random Assignment </h2>  
       <select [(ngModel)]="design.random_assignment" placeholder="random_assignment">
-        <option value= true>true</option>
-        <option value= false >false</option>
+        <option value= "true">true</option>
+        <option value= "false" >false</option>
       </select>
-     {{ design.random_assignment}}
-    <div *ngIf="design.random_assignment">
+      {{design.random_assignment}}
+    <div *ngIf="design.random_assignment == false">
     
   
     Description    of assignement
@@ -175,27 +181,46 @@
         
         
 
-          Setting
+          Variable
 
 
           <button (click)="agregarSetting(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
             +
           </button>
           <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
+
+
            
         <div formArrayName="setting" *ngFor="let setting of protocol.settings; let st = index " >
           
           
             
             
-             
+             <div *ngIf="protocol.type == 'Treatment' || protocol.type == 'Treatment_&_Measurement'">
                Name      
-                <input [(ngModel)]="setting.varName" placeholder="Name"/>
+            
+                <select [(ngModel)]="setting.varName" placeholder="Name">
+                  <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
+                
+                             
+                </select>
               
               
-               type      
+               Value     
+               
                 <input [(ngModel)]="setting.varValue" placeholder="type"/>
-              
+                <div *ngIf="!valorvariable(setting.varName,setting.varValue)"> 
+                  <h1 style="color: red;" > ERROR+</h1>
+                </div> 
+              </div>
+              <div *ngIf="protocol.type == 'Measurement' || protocol.type == 'Treatment_&_Measurement'">
+                Outcome
+              <select  [(ngModel)]="setting.varOutcome" placeholder="outcome">
+                <option  *ngFor="let variable of Variable_Outcome; let i = index " value="{{variable.name}}">{{variable.name}} </option>
+                           
+              </select>
+              </div>
+            
               
               
             
@@ -217,13 +242,14 @@
   </div>
 
   <div *ngIf = " design.design == 'Custom'">
-  <h2> Bloquing Variables  {{ Variables?.length}}
+  <h2> Bloquing Variables 
 
-
+<div  *ngIf = " contador != Variables?.length && Variables?.length" >
 
     <button (click)="agregarBloquingVars(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
     </button> 
+  </div>
 </h2>
 
     <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
@@ -233,7 +259,7 @@
     
       
       
-    <select [(ngModel)]="bloquingVar.name" placeholder="description">
+    <select [(ngModel)]="bloquingVar.name" placeholder="variable name">
         <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
       
                    

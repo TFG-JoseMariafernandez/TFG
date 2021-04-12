@@ -1,9 +1,43 @@
+import { Variables } from "./variables";
 
+
+export interface VarGroupArray {
+ 
+
+  name:string
+  
+  
+   
+  }
+
+
+export interface Having {
+ 
+
+var:VarGroupArray,
+operator:string,
+value:string,
+
+
+ 
+}
+
+export interface Data_Spec {
+  of_variable: VarGroupArray[],
+  of_group:VarGroupArray[],
+  by_variable:VarGroupArray[],
+  by_group:VarGroupArray[],
+  having : Having[]
+
+
+ 
+}
 export interface Analyses_table {
     id: string,
     analyses_type:string,
-    details:string,
-    data_spec:string,
+    test:string,
+    alpha:string,
+    data_spec:Data_Spec,
   
    
   }
@@ -12,6 +46,3 @@ export interface Analyses_table {
     table: Analyses_table[]
     
 }
-
-
-  

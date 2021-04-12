@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import { Hypotheses } from '../models/hypotheses';
 import {Variables,Type}from '../models/variables'
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-hypotheses',
@@ -8,6 +9,8 @@ import {Variables,Type}from '../models/variables'
   styleUrls: ['./hypotheses.component.css']
 })
 export class HypothesesComponent implements OnInit {
+  public Editor = ClassicEditor;
+
   @Output()
   enviar: EventEmitter<Hypotheses[]> = new EventEmitter<Hypotheses[]>();
   selectedCon: Hypotheses | undefined;

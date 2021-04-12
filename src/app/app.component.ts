@@ -2,7 +2,7 @@ import { stringify } from '@angular/compiler/src/util';
 import { Component } from '@angular/core';
 import { Context, Experimenters,Absctract,Goal } from '../app/models/context';
 import { CONTEXTS } from './contexts';
-import { Analyses, Analyses_table } from './models/analyses';
+import { Analyses, Analyses_table,Data_Spec,Having,VarGroupArray } from './models/analyses';
 import { Desing,Design_Parameters,Group,Protocol, Setting } from './models/design';
 import { Hypotheses } from './models/hypotheses';
 import {Variables,Type}from './models/variables'
@@ -16,19 +16,7 @@ import {Experimento}from './models/experimento'
 export class AppComponent {
   title = 'TFG';
 // componente padre (vacio)
-analyses_table :Analyses_table[]= [{
-  id: '',
-  analyses_type:'',
-  details:'',
-  data_spec:'',
 
- 
-}];
- analyses:Analyses[] =[  {
-  name:'',
-  table: this.analyses_table
-  
-}   ]
 absctract: Absctract = {
     
   Context: '',
@@ -110,6 +98,7 @@ g:Group = {
 settings: Setting[] = [ {
   varName:"",
   varValue:"",
+  varOutcome:""
  
 
 }];
@@ -161,6 +150,45 @@ hypotheses: Hypotheses[] = [{
   variable_outcome: this.varEx,
 
 }];
+varGroupArray: VarGroupArray = {
+  name:'',
+
+   
+  }
+having: Having[] =  [{
+ 
+
+  var:this.varGroupArray,
+  operator:'',
+  value:'',
+  
+  
+   
+  }]
+data_spect: Data_Spec =  {
+  of_variable: [],
+  of_group:[],
+  by_variable:[],
+  by_group:[],
+ having:this.having
+
+
+ 
+} 
+analyses_table :Analyses_table[]= [{
+  id: '',
+  analyses_type:'',
+  test:'',
+  alpha:"",
+  data_spec:this.data_spect,
+
+ 
+}];
+ analyses:Analyses[] =[  {
+  name:'',
+  table: this.analyses_table
+  
+}   ]
 
 experimento:Experimento = {
   context: this.context,
@@ -181,6 +209,7 @@ vercontextFinal:JSON | undefined;
 experimentoFinal: JSON | undefined;
 
 //Componentes enviados a hijos
+GroupsEnviados : Group[] | undefined
 
 ContextEnviado:Context | undefined;
   VariableEnviado: Variables[] | undefined;
@@ -212,7 +241,7 @@ VariableEnviadoDes:Variables[] | undefined;
     const varValidasOutcome = []
     
     for (let index = 0; index < mensaje.length; index++) {
-     if(mensaje[index].type == "OutCome"){
+     if(mensaje[index].type != "OutCome"){
       varValidas.push(mensaje[index])
   
       }else{
@@ -254,12 +283,29 @@ recibirAnalyses(mensaje:Analyses[]){
 
 }
 recibirDesign(mensaje:Desing[]){
+  var desigfinal = []
   this.DesignsEnviado = mensaje;
+  var group_env=[];
+  for (let index = 0; index < mensaje.length; index++) {
+   
+    for (let j = 0; j < mensaje[index].groups.length; j++) {
+      const element = mensaje[index].groups[j];
+      console.log(element)
+      group_env.push(element)
+      console.log(group_env)
 
+      
+    }
+    
+  }
+  this.GroupsEnviados = group_env;
+console.log(this.GroupsEnviados)
   
   this.designsFinal = JSON.parse(JSON.stringify(mensaje));
   this.experimento.design = mensaje;
   this.experimentoFinal =  JSON.parse(JSON.stringify(this.experimento));
+  desigfinal.push(mensaje);
+  
 
 
 }

@@ -33,7 +33,7 @@
       
       Type   
         
-        <select   [(ngModel)]="hypothese.type" placeholder="description">
+        <select   [(ngModel)]="hypothese.type" placeholder="type">
             <option value="impacted">Is impacted significatly by </option>
             <option value="Correloated">Is correloated with </option>
             <option value="Described">Described in natural language </option>
@@ -44,7 +44,8 @@
   
       
      Description
-        <input [(ngModel)]="hypothese.description" placeholder="type"/>
+       
+        <ckeditor  max-width= 50%;    [editor]="Editor"[(ngModel)]="hypothese.description"  placeholder="description"></ckeditor>
         
     
      

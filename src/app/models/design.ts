@@ -16,6 +16,7 @@ export interface Group {
 export interface Setting {
     varName :string,
     varValue:string,
+    varOutcome:string
 
 }
 
@@ -27,6 +28,13 @@ export interface Protocol {
 
    
 }
+export interface Bloqvars {
+    name:string,
+   
+
+   
+}
+
 
 export interface Desing {
     design: string,
@@ -34,7 +42,7 @@ export interface Desing {
     design_parameters :Design_Parameters[],
     random_assignment:boolean,
     description_assignmentMethod:string,
-    BloquingVars:Variables[],
+    BloquingVars:Bloqvars[],
     groups:Group[],
     protocols:Protocol[]
   
