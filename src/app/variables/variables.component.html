@@ -52,9 +52,8 @@
       
       
         <select  [(ngModel)]="variable.domain" placeholder="domain">
-            <option *ngFor="let dom of domains" [value]="dom.value">
-                {{dom.viewValue}}
-            </option>
+          <option value="One_of">One of</option>
+          <option value="Of_type">of type</option>
         </select>
       
       
@@ -62,7 +61,7 @@
         
         
      
-      <div *ngIf="variable.domain == domains[1].value">
+      <div *ngIf="variable.domain == 'Of_type'">
       Domain units
 
 
@@ -80,7 +79,7 @@
 
     
     </div>
-    <div *ngIf="variable.domain == domains[0].value">
+    <div *ngIf="variable.domain == 'One_of'">
      
       <p>
         <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
@@ -90,18 +89,18 @@
         <button (click)="agregarType(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
           +
         </button>
-        
-
-   
-      <div formArrayName="type" *ngFor="let type of variable.types; let j = index " >
-        
         Ordered
-        <select [(ngModel)]="type.ordered" placeholder="units">
+        <select [(ngModel)]="variable.ordered" placeholder="units">
           <option value= true >True</option>
           <option value= false >False</option>
          
           
         </select>
+
+   
+      <div formArrayName="type" *ngFor="let type of variable.types; let j = index " >
+        
+        
       
            
          Name      

@@ -51,7 +51,7 @@ context : Context = {
 T:Type[]  =[ {
   name : '',
   description:'',
-  ordered:false
+
   
   }];
 
@@ -63,6 +63,7 @@ var: Variables[] =[{
   type: '',
   units:'',
   domain_units:"",
+  ordered:false,
   types: this.T,
 
 }];
@@ -74,6 +75,7 @@ va: Variables ={
   type: '',
   units:'',
   domain_units:"",
+  ordered:false,
   types: this.T,
 
 };
@@ -125,7 +127,7 @@ Desing : Desing[] =  [{
 THyp:Type[]  =[ {
   name : '',
   description:'',
-  ordered:false
+
   
   }];
 
@@ -137,6 +139,7 @@ varEx: Variables ={
   type: '',
   units:'',
   domain_units:"",
+  ordered:false,
   types: this.T,
 
 };
@@ -218,6 +221,9 @@ HypothesesEnviado:Hypotheses[] | undefined;
 AnalysesEnviado:Analyses[] | undefined;
 DesignsEnviado:Desing[] | undefined;
 VariableEnviadoDes:Variables[] | undefined;
+VariableEnviadoOrdered:Variables[] | undefined;
+VariableEnviadoOneOf:Variables[] | undefined;
+
 
 
 
@@ -239,8 +245,21 @@ VariableEnviadoDes:Variables[] | undefined;
   recibirVariable(mensaje:Variables[]){
     const varValidas = []
     const varValidasOutcome = []
-    
+    const varValidaOrdered = []
+    const varValidaOneOf = []
+
+  
     for (let index = 0; index < mensaje.length; index++) {
+      
+     
+      if (mensaje[index].domain == 'One_of'){
+        varValidaOneOf.push(mensaje[index])
+      }
+      if(mensaje[index].ordered){
+        varValidaOrdered.push(mensaje[index])
+
+      }
+      
      if(mensaje[index].type != "OutCome"){
       varValidas.push(mensaje[index])
   
@@ -248,6 +267,8 @@ VariableEnviadoDes:Variables[] | undefined;
     varValidasOutcome.push(mensaje[index])
   }
     }
+    this.VariableEnviadoOneOf = varValidaOneOf;
+    this.VariableEnviadoOrdered = varValidaOrdered;
     this.VariableEnviado = varValidas;
     this.VariableOutcomeEnviado = varValidasOutcome;
    this.VariableEnviadoDes = mensaje;

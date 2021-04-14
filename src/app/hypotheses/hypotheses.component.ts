@@ -23,7 +23,7 @@ export class HypothesesComponent implements OnInit {
   T:Type[]  =[ {
     name : '',
     description:'',
-    ordered:false
+  
     
     }];
 
@@ -35,6 +35,7 @@ export class HypothesesComponent implements OnInit {
     type: '',
     units:'',
     domain_units:"",
+    ordered:false,
     types: this.T,
 
   };
@@ -73,6 +74,16 @@ export class HypothesesComponent implements OnInit {
   }
   guardar(hypotheses: Hypotheses[]): void {
     for (let i = 0; i < this.hypotheses.length; i++) {
+      var element = this.hypotheses[i]
+      if(!element.name || element.name == ""){
+        this.errorMen ='El nombre de las hipotesis esta vacio';
+          this.error= true;
+      }else if ( !element.type || element.type == " "){
+        this.errorMen ='El tipo de las hipotesis esta vacio';
+          this.error= true;
+      }else{
+        this.error = false
+      }
       for (let j = 0; j < this.hypotheses.length; j++) {
         if(i != j){
           if(this.hypotheses[i].name == this.hypotheses[j].name){

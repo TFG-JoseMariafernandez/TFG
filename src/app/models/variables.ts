@@ -1,7 +1,7 @@
 export interface Type {
     name:string,
     description:string,
-    ordered:Boolean
+    
 }
 export interface Variables {
     name: string,
@@ -10,6 +10,7 @@ export interface Variables {
     domain:string,
   domain_units:string,
     units:string,
+    ordered:Boolean
     types:Type[]
   
    

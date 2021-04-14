@@ -207,7 +207,7 @@
                  
                    
                  <select [(ngModel)]="d.name" placeholder="variable name">
-                   <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
+                   <option  *ngFor="let variable of VariablesOneOf; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
                  
                               
                  </select>
@@ -240,8 +240,8 @@
                 
                   
                   
-                <select [(ngModel)]="hav.var" placeholder="variable name">
-                    <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
+                <select [(ngModel)]="hav.var.name" placeholder="variable name">
+                    <option  *ngFor="let variable of VariablesOrdered; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
                   
                                
                   </select>
@@ -253,8 +253,15 @@
                     <option value=">'"> > </option>                   
                        
                   </select>
+
+
                   <input [(ngModel)]="hav.value" placeholder="Name"/>
-                  
+                 aqui  {{hav.var.name}}
+                
+                  <div *ngIf="!valorvariable(hav.var.name,hav.value)"> 
+                    <h1 style="color: red;" > ERROR+</h1>
+                  </div> 
+                              
 
                 
                   

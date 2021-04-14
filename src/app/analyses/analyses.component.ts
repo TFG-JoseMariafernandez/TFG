@@ -11,7 +11,7 @@ export class AnalysesComponent implements OnInit {
   T:Type[]  =[ {
     name : '',
     description:'',
-    ordered:false
+
     
     }];
   varOf: Variables[] =[{
@@ -22,6 +22,7 @@ export class AnalysesComponent implements OnInit {
     type: '',
     units:'',
     domain_units:"",
+    ordered:false,
     types: this.T,
 
   }];
@@ -78,12 +79,17 @@ having: Having[] =  [{
   Groups : Group[] | undefined
   @Input()
   Variables : Variables[] | undefined
+  @Input()
+  VariablesOrdered : Variables[] | undefined
+  @Input()
+  VariablesOneOf : Variables[] | undefined
+  
   
 
   
 
   error:Boolean | undefined;
-  
+  comprobacion : boolean | undefined 
   errorMen:String | undefined;
   contadorRep:number = 0;
   group_Var: string | undefined;
@@ -99,6 +105,8 @@ having: Having[] =  [{
 
   valorvariable(NameVari:string , value:any){
     const vari = this.Variables?.find(x => x.name == NameVari);
+    console.log(value)
+    console.log( NameVari)
     console.log(vari)
    
     var bol: boolean = false
@@ -149,6 +157,14 @@ having: Having[] =  [{
       }
      }
     }
+ 
+ 
+ 
+ this.comprobacion = bol;
+ console.log(this.comprobacion)
+ 
+ return bol;
+ 
   }
 
 
@@ -325,6 +341,30 @@ having: Having[] =  [{
 
   guardar(analyses: Analyses[]): void {
     for (let i = 0; i < this.analyses.length; i++) {
+     var element =  this.analyses[i];
+     if ( !element.name || element.name == ""){
+      this.errorMen ='El bonmbre del analisis  esta vacio';
+        this.error= true;
+    }else{
+      this.error = false
+    }
+    if (this.group_Var == 'group'){
+      for (let j = 0;  j< element.table.length; j++) {
+        const tab = element.table[j];
+        tab.data_spec.by_variable= []
+        tab.data_spec.of_variable = []
+        tab.data_spec.having = []
+        
+      }}else  if (this.group_Var == 'vars'){
+        for (let j = 0;  j< element.table.length; j++) {
+          const tab = element.table[j];
+          tab.data_spec.by_group= []
+          tab.data_spec.of_group = []
+         
+          
+        }
+      }
+
       for (let j = 0; j < this.analyses.length; j++) {
       
         if(i != j){

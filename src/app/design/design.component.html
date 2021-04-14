@@ -17,6 +17,11 @@
  
 
   </div>
+  <div *ngIf= "error">
+    <h1 style="color: red;" > {{errorMen}}</h1>
+ 
+
+  </div>
 
  
   
@@ -90,11 +95,11 @@
 
       <h2>Random Assignment </h2>  
       <select [(ngModel)]="design.random_assignment" placeholder="random_assignment">
-        <option value= "true">true</option>
-        <option value= "false" >false</option>
+        <option value= 'true'>true</option>
+        <option value= 'false' >false</option>
       </select>
-      {{design.random_assignment}}
-    <div *ngIf="design.random_assignment == false">
+     
+    <div *ngIf="random_ass(design.random_assignment)">
     
   
     Description    of assignement

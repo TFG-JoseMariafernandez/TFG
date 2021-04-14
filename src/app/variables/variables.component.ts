@@ -17,7 +17,7 @@ export class VariablesComponent implements OnInit {
   T:Type[]  =[ {
     name : '',
     description:'',
-    ordered: false,
+    
     
     }];
   
@@ -29,15 +29,12 @@ export class VariablesComponent implements OnInit {
     type: '',
     units:'',
     domain_units:"",
+    ordered: false,
     types: this.T,
 
   }];
   
-  domains  = [
-    {value: 'One_of', viewValue: 'One of'},
-    {value: 'Of_type', viewValue: 'of type'},
-    
-  ];
+
   varActual : Variables | undefined ;
 
   error:Boolean | undefined;
@@ -80,6 +77,7 @@ export class VariablesComponent implements OnInit {
     type: '',
     units:'',
     domain_units:"",
+    ordered: false,
     types:[],
     });
    
@@ -117,7 +115,43 @@ export class VariablesComponent implements OnInit {
   }
 
   guardar(variables: Variables[]): void {
+
+
+
     for (let i = 0; i < this.variables.length; i++) {
+      var element =this.variables[i];
+   
+      if(!element.name   ){
+        this.error = true
+        this.errorMen ='El nombre de alguna variable esta vacio';
+      }else if( !element.type  || element.type == ""  ){
+        this.error = true
+        this.errorMen ='El tipo de alguna variable esta vacio';
+      }else  if( !element.domain || element.domain == " "  && element.type != "OutCome" ){
+        this.error = true
+        this.errorMen ='El domain de alguna variable esta vacio';
+      }else{
+        this.error = false
+      }
+
+      if(element.domain == 'Of_type'){
+        element.types = []
+        element.ordered = false
+        
+      }else if (element.domain == 'One_of'){
+        element.domain_units = ''
+      
+      } if (element.type == "OutCome"){
+        element.description = ''
+        element.domain = ''
+        element.domain_units = ''
+        element.ordered = false
+        element.types = []
+        element.units = ''
+  
+
+      }
+
       for (let j = 0; j < this.variables.length; j++) {
       
         if(i != j){
@@ -130,7 +164,8 @@ export class VariablesComponent implements OnInit {
       }
       }
     }
-    if(this.contadorRep == 0) {
+
+    if(this.contadorRep == 0 && !this.error) {
       this.error = false;
       this.guarda = variables;
     

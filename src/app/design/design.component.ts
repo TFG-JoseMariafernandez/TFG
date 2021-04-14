@@ -5,6 +5,8 @@ import {Variables,Type}from '../models/variables'
 
 
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { variable } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-design',
@@ -35,7 +37,7 @@ export class DesignComponent implements OnInit {
   T:Type[]  =[ {
     name : '',
     description:'',
-    ordered:false
+
     
     }];
 
@@ -47,6 +49,7 @@ export class DesignComponent implements OnInit {
     type: '',
     units:'',
     domain_units:"",
+    ordered:false,
     types: this.T,
 
   }];
@@ -58,6 +61,7 @@ export class DesignComponent implements OnInit {
     type: '',
     units:'',
     domain_units:"",
+    ordered:false,
     types: this.T,
 
   };
@@ -109,6 +113,7 @@ settings: Setting[] = [ {
   }]
   comprobacion: boolean = true ;
   errorMen:String | undefined;
+  error : boolean = false;
 
 
  valorvariable(NameVari:string , value:any){
@@ -170,6 +175,21 @@ this.comprobacion = bol;
 console.log(this.comprobacion)
 
 return bol;
+
+ }
+ random_ass(re:boolean){
+   var res = String(re)
+
+
+   if(res  == 'true'){
+
+     return true
+   }else if(res == 'false' ){
+
+     return false
+   }else{
+     return false
+   }
 
  }
 
@@ -256,9 +276,22 @@ this.DesignActual = DesignFormGroup;
     
     
    des.BloquingVars.push(var_of)
+   
+     
+    
+ 
     this.contador++
    
     
+  }
+  borrarBV(va:String){
+    console.log('èntra')
+    const vari = this.Variables?.find(x => x.name == va)!;
+    var i = this.Variables?.indexOf(vari)!;
+   
+    this.Variables?.splice( i,1)
+    return true
+
   }
   removerVars(indiceDes: number , indicevars : number) {
     const vars = this.Desing[indiceDes];
@@ -293,7 +326,24 @@ this.DesignActual = DesignFormGroup;
 
   guardar(design: Desing[]): void {
     console.log(this.comprobacion)
-    if(this.comprobacion){
+    for (let index = 0; index < design.length; index++) {
+      const element = design[index];
+      if(element.design != 'Custom'){
+        element.BloquingVars = []
+        element.protocols = []
+        element.groups = []
+      }
+     
+      if ( !element.design || element.design == " "){
+        this.errorMen ='El design del Design  esta vacio';
+          this.error= true;
+      }else{
+        this.error = false
+      }
+
+      
+    }
+    if(this.comprobacion && !this.error){
  
     this.guarda = design;
     console.log(this.guarda)
