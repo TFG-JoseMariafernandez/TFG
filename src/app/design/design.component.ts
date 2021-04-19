@@ -328,18 +328,20 @@ this.DesignActual = DesignFormGroup;
     console.log(this.comprobacion)
     for (let index = 0; index < design.length; index++) {
       const element = design[index];
-      if(element.design != 'Custom'){
-        element.BloquingVars = []
-        element.protocols = []
-        element.groups = []
-      }
-     
       if ( !element.design || element.design == " "){
         this.errorMen ='El design del Design  esta vacio';
           this.error= true;
       }else{
         this.error = false
       }
+      if(element.design != 'Custom'){
+        element.BloquingVars = []
+        element.protocols = []
+        element.groups = []
+        this.comprobacion == true
+      }
+     
+    
 
       
     }
@@ -350,8 +352,6 @@ this.DesignActual = DesignFormGroup;
     
     this.enviar.emit(this.guarda); 
     
-  }else{
-    this.errorMen = 'EL valor de la variable no es coherente con su dominio'
   }
 
     

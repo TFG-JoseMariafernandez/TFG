@@ -241,6 +241,8 @@ VariableEnviadoOneOf:Variables[] | undefined;
     this.experimentoFinal =  JSON.parse(JSON.stringify(this.experimento));
     
   }
+  
+ 
 
   recibirVariable(mensaje:Variables[]){
     const varValidas = []

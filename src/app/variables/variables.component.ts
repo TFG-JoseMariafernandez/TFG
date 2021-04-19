@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import {Variables,Type}from '../models/variables'
 import {Context}from '../models/context'
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
 
 
@@ -50,6 +51,8 @@ export class VariablesComponent implements OnInit {
   
   @Output()
   enviar: EventEmitter<Variables[]> = new EventEmitter<Variables[]>();
+  @Output()
+  change: EventEmitter<String> = new EventEmitter<String>();
   selectedVar: Variables | undefined;
   guarda!: Variables[]
   @Input() Contexto: Context | undefined;
@@ -179,4 +182,5 @@ export class VariablesComponent implements OnInit {
 
     
   }
+
 }
