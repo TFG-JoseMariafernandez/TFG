@@ -6,6 +6,7 @@ import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import { stringify } from '@angular/compiler/src/util';
 
 
+
 @Component({
   selector: 'app-context',
   templateUrl: './context.component.html',
@@ -67,9 +68,10 @@ export class ContextComponent implements OnInit {
     
   }
   guardar(context: Context): void {
- 
-    this.guarda = context;
+    this.context = context
     
+    this.guarda = context;
+    console.log(context)
     this.enviar.emit(this.guarda); 
     
     
@@ -86,6 +88,7 @@ export class ContextComponent implements OnInit {
     });
 
     this.experimenters.push(ExperimentersFormGroup);
+    console.log(this.experimenters)
   }
   removerExperimenters(indice: number) {
 

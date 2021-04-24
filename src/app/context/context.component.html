@@ -9,19 +9,19 @@
   <mat-label style="font-size: large; font-weight: bold; margin-bottom: 2%;"><div><span>absctract </span></div> </mat-label>
   <div style="margin-bottom: 2%;">  
     <label>Context:
-      <input [(ngModel)]="absctract.Context" placeholder="Context"/>
+      <input  id = "Context1" [(ngModel)]="absctract.Context" placeholder="Context"/>
     </label>
     <label>Goal:
-      <input [(ngModel)]="absctract.Goal" placeholder="Goal"/>
+      <input   id = "absctract.Goal" [(ngModel)]="absctract.Goal" placeholder="Goal"/>
     </label>
     <label>Method:
-      <input [(ngModel)]="absctract.Method" placeholder="Method"/>
+      <input   id = "absctract.Method" [(ngModel)]="absctract.Method" placeholder="Method"/>
     </label>
     <label>Result:
-      <input [(ngModel)]="absctract.Result" placeholder="Result"/>
+      <input   id = "absctract.Result" [(ngModel)]="absctract.Result" placeholder="Result"/>
     </label>
     <label>Conclusions:
-      <input [(ngModel)]="absctract.Conclusions" placeholder="Conclusions"/>
+      <input   id = "absctract.Conclusions" [(ngModel)]="absctract.Conclusions" placeholder="Conclusions"/>
     </label> </div>
 
 
@@ -30,20 +30,20 @@
     <div ><span>Goal </span></div> </mat-label>
   <div>  
     <label>   Analyce :  
-      <input [(ngModel)]="goal.analyce" placeholder="Context"/>
+      <input id ="goal.analyce" [(ngModel)]="goal.analyce" placeholder="Context"/>
     </label>
     <label>for purpose of : 
-      <input [(ngModel)]="goal.purpose_of" placeholder="Goal"/>
+      <input id ="goal.purpose_of"  [(ngModel)]="goal.purpose_of" placeholder="Goal"/>
     </label>
     <label>
       With respect to
-      <input [(ngModel)]="goal.respect_to" placeholder="Method"/>
+      <input  id ="goal.respect_to" [(ngModel)]="goal.respect_to" placeholder="Method"/>
     </label>
     <label>  From the point of view of :
-      <input [(ngModel)]="goal.point_of_view" placeholder="Result"/>
+      <input id ="goal.point_of_view"  [(ngModel)]="goal.point_of_view" placeholder="Result"/>
     </label>
     <label> In the context of 
-      <input [(ngModel)]="goal.context_of" placeholder="Conclusions"/>
+      <input  id ="goal.context_of" [(ngModel)]="goal.context_of" placeholder="Conclusions"/>
     </label>
 
   </div>
@@ -51,7 +51,7 @@
 <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218); margin-top: 2%;">
   <mat-label  style="font-size: large; font-weight: bold;">
   <span>experimenters </span>
-  <button (click)="agregarExperimenters()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  <button (click)="agregarExperimenters()"  id = "agregarExperimenters"  mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
   </mat-label>
@@ -74,26 +74,26 @@
     
      
       <td >        
-        <input [(ngModel)]="experimenters.name" placeholder="Name"/>
+        <input id="experimenters.name" [(ngModel)]="experimenters.name" placeholder="Name"/>
       
       </td>
       
       <td >      
-        <input [(ngModel)]="experimenters.email" placeholder="email"/> 
+        <input id="experimenters.email"  [(ngModel)]="experimenters.email" placeholder="email"/> 
         
       </td>
       
       <td>  
-        <input [(ngModel)]="experimenters.organization" placeholder="organization"/>
+        <input  id="experimenters.organization" [(ngModel)]="experimenters.organization" placeholder="organization"/>
         
       </td>
      
       <td >   
-        <input [(ngModel)]="experimenters.rol" placeholder="rol"/>    
+        <input  id="experimenters.rol" [(ngModel)]="experimenters.rol" placeholder="rol"/>    
       
       </td>
       <td >   
-        <input [(ngModel)]="experimenters.task" placeholder="task"/>    
+        <input  id="experimenters.task" [(ngModel)]="experimenters.task" placeholder="task"/>    
       
       </td>
       
@@ -102,7 +102,7 @@
     
   
   <td>  
-    <button (click)="removerExperimenters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+    <button  id = "removerExperimenters" (click)="removerExperimenters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
    
   </td>
 
@@ -113,12 +113,13 @@
 </mat-card>
 
   
-    <button style="margin-left: 50%"  (click)="guardar(context)"> GUARDAR</button>
+    <button style="margin-left: 50%" id = "guardar"  (click)="guardar(context)"> GUARDAR</button>
   
 
 
 
   </mat-card>
+
 
   </body>
 

@@ -42,6 +42,7 @@ export class VariablesComponent implements OnInit {
   
   errorMen:String | undefined;
   contadorRep:number = 0;
+  names:string[] = []
 
   
   
@@ -52,7 +53,7 @@ export class VariablesComponent implements OnInit {
   @Output()
   enviar: EventEmitter<Variables[]> = new EventEmitter<Variables[]>();
   @Output()
-  change: EventEmitter<String> = new EventEmitter<String>();
+  change: EventEmitter<String[]> = new EventEmitter<String[]>();
   selectedVar: Variables | undefined;
   guarda!: Variables[]
   @Input() Contexto: Context | undefined;
@@ -122,7 +123,9 @@ export class VariablesComponent implements OnInit {
 
 
     for (let i = 0; i < this.variables.length; i++) {
+
       var element =this.variables[i];
+      this.names.push(element.name)
    
       if(!element.name   ){
         this.error = true
@@ -169,9 +172,10 @@ export class VariablesComponent implements OnInit {
     }
 
     if(this.contadorRep == 0 && !this.error) {
+
       this.error = false;
       this.guarda = variables;
-    
+      
       this.enviar.emit(this.guarda); 
   }
   this.contadorRep = 0;
@@ -183,4 +187,17 @@ export class VariablesComponent implements OnInit {
     
   }
 
+  saverange(newName:string, old:number) {
+ var envioCambios:string[] =[]
+
+ 
+   envioCambios.push(newName)
+   envioCambios.push(this.names[old])
+
+
+
+    this.change.emit(envioCambios)
+    
+  }
+  
 }

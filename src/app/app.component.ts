@@ -228,7 +228,35 @@ VariableEnviadoOneOf:Variables[] | undefined;
 
 
   
- 
+changeVariable(newname:String[]){
+  var oldname = newname[1];
+  var newnameStr = newname[0]
+  console.log(this.experimento)
+  
+  for (let index = 0; index < this.experimento.analyses.length; index++) {
+    const element = this.experimento.analyses[index];
+
+    for (let j = 0; j < element.table.length; j++) {
+      const tab = element.table[j];
+      for (let i = 0; i < tab.data_spec.of_variable.length; i++) {
+        const of = tab.data_spec.of_variable[i];
+        if(of.name == oldname){
+          console.log('este nombre hay que cambiarlo')
+          of.name = newnameStr.toString();
+          this.experimentoFinal =  JSON.parse(JSON.stringify(this.experimento));
+
+        }else{
+          console.log('nop')
+        }
+        
+      }
+      
+    }
+    
+  }
+
+
+}
   
   
   recibirContext(mensaje: Context) {

@@ -1,25 +1,42 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { By } from '@angular/platform-browser';
+import { Goal, Experimenters } from '../models/context';
 
 import { ContextComponent } from './context.component';
 
+
 describe('ContextComponent', () => {
-  let component: ContextComponent;
-  let fixture: ComponentFixture<ContextComponent>;
+ let context : ContextComponent
+ beforeEach(async(() => {
+  TestBed.configureTestingModule({
+   
+    declarations: [ ContextComponent ],
+    providers: []
+  })
+  .compileComponents();
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ContextComponent ]
-    })
-    .compileComponents();
-  });
+  TestBed.configureTestingModule({
+    declarations : [ ContextComponent]
+  }).createComponent(ContextComponent)
+}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ContextComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+
+
+  it('Prubea test uno', () => {
+    let context = TestBed.createComponent(ContextComponent);
+(<HTMLInputElement> document.getElementById('Context1')).value= 'prueba';
+(<HTMLInputElement> document.getElementById('absctract.Goal')).value= 'prueba';
+(<HTMLInputElement> document.getElementById('absctract.Method')).value= 'prueba';
+(<HTMLInputElement> document.getElementById('absctract.Result')).value= 'prueba';
+(<HTMLInputElement> document.getElementById('absctract.Conclusions')).value= 'prueba';
+document.getElementById('guardar')?.click();
+document.getElementById('agregarExperimenters')?.click();
+
+console.log('aqui')
+console.log(context)
+
+ 
   });
 });
