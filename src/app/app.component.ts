@@ -8,6 +8,7 @@ import { Hypotheses } from './models/hypotheses';
 import {Variables,Type}from './models/variables'
 import {Experimento}from './models/experimento'
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -118,7 +119,7 @@ Desing : Desing[] =  [{
   design_parameters :this.Design_Parameters,
   random_assignment:false,
   description_assignmentMethod:'',
-  BloquingVars:this.var,
+  BloquingVars:[],
   groups:this.Group,
   protocols:this.Protocol
 
@@ -149,8 +150,8 @@ hypotheses: Hypotheses[] = [{
   name: '',
   type: ' ',
   description:' ',
-  variable: this.varEx, 
-  variable_outcome: this.varEx,
+  variable: '', 
+  variable_outcome: '',
 
 }];
 varGroupArray: VarGroupArray = {
@@ -229,10 +230,12 @@ VariableEnviadoOneOf:Variables[] | undefined;
 
   
 changeVariable(newname:String[]){
+
   var oldname = newname[1];
   var newnameStr = newname[0]
-  console.log(this.experimento)
+  if(newnameStr){
   
+  //actualizacion en analisis
   for (let index = 0; index < this.experimento.analyses.length; index++) {
     const element = this.experimento.analyses[index];
 
@@ -241,13 +244,29 @@ changeVariable(newname:String[]){
       for (let i = 0; i < tab.data_spec.of_variable.length; i++) {
         const of = tab.data_spec.of_variable[i];
         if(of.name == oldname){
-          console.log('este nombre hay que cambiarlo')
+         
           of.name = newnameStr.toString();
-          this.experimentoFinal =  JSON.parse(JSON.stringify(this.experimento));
+         
 
-        }else{
-          console.log('nop')
         }
+        
+      }
+      for (let i = 0; i < tab.data_spec.by_variable.length; i++) {
+        const by = tab.data_spec.by_variable[i];
+        if(by.name == oldname){
+         
+          by.name = newnameStr.toString();
+         
+
+        }
+        for (let i = 0; i < tab.data_spec.having.length; i++) {
+          const hv = tab.data_spec.having[i];
+          if(hv.var.name == oldname){
+           
+            hv.var.name = newnameStr.toString();
+           
+  
+          }
         
       }
       
@@ -255,7 +274,68 @@ changeVariable(newname:String[]){
     
   }
 
+//actualiozacion de hipotesis
+console.log('principio      ' + newnameStr)
+  
 
+
+ } for (let index = 0; index < this.experimento.hypotheses.length; index++) {
+  
+   const element = this.experimento.hypotheses[index];
+
+   console.log(element.variable_outcome)
+   if(element.variable == oldname){
+           
+    element.variable = newnameStr.toString();
+   
+
+  }if(element.variable_outcome == oldname){
+  
+           
+    element.variable_outcome = newnameStr.toString();
+   
+
+  }
+   
+ }//actualizacion de design
+
+ for (let index = 0; index <this.experimento.design.length; index++) {
+
+   const element =  this.experimento.design[index];
+  for (let b = 0; b < element.BloquingVars.length; b++) {
+    const bv = element.BloquingVars[b];
+    if(bv.name == oldname){
+           
+     bv.name = newnameStr.toString();
+     
+  
+    }
+  
+    
+  }
+  for (let p = 0; p < element.protocols.length; p++) {
+    const pro = element.protocols[p];
+    for (let v = 0; v < pro.settings.length; v++) {
+      const va = pro.settings[v];
+      if(va.varName == oldname){
+           
+        va.varName = newnameStr.toString();
+        
+     
+       } if(va.varOutcome == oldname){
+           
+        va.varOutcome = newnameStr.toString();
+        
+     
+       }
+      
+    }
+    
+  }
+   
+ }
+}
+this.experimentoFinal =  JSON.parse(JSON.stringify(this.experimento));
 }
   
   
@@ -341,16 +421,16 @@ recibirDesign(mensaje:Desing[]){
    
     for (let j = 0; j < mensaje[index].groups.length; j++) {
       const element = mensaje[index].groups[j];
-      console.log(element)
+      
       group_env.push(element)
-      console.log(group_env)
+    
 
       
     }
     
   }
   this.GroupsEnviados = group_env;
-console.log(this.GroupsEnviados)
+
   
   this.designsFinal = JSON.parse(JSON.stringify(mensaje));
   this.experimento.design = mensaje;

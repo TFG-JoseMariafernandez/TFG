@@ -31,18 +31,11 @@ export class ContextComponent implements OnInit {
   
   
   };
-  experimenters:Experimenters[] = [{
-    name: '',
-  email:'',
-  organization:'',
-  rol:'',
-  task:''
-    
-    }];
+  experimenters:Experimenters[] = [];
   context : Context = {
     Absatract : this.absctract,
     Goal: this.goal,
-    Experimenters : this.experimenters,
+    Experimenters : [],
   }
   
   @Output()
@@ -68,10 +61,10 @@ export class ContextComponent implements OnInit {
     
   }
   guardar(context: Context): void {
-    this.context = context
+   
     
     this.guarda = context;
-    console.log(context)
+
     this.enviar.emit(this.guarda); 
     
     
@@ -88,7 +81,7 @@ export class ContextComponent implements OnInit {
     });
 
     this.experimenters.push(ExperimentersFormGroup);
-    console.log(this.experimenters)
+    
   }
   removerExperimenters(indice: number) {
 

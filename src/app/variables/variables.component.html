@@ -18,7 +18,11 @@
     
      
       Name      
-        <input [(ngModel)]="variable.name" placeholder="Name" id = "name"   (ngModelChange)="saverange($event,i)" />    
+        <input [(ngModel)]="variable.name" placeholder="Name" id = "name"     (blur)="cambios(variable.name,i)" />
+
+        
+
+            
             
         <div *ngFor="let v of variables; let varia = index " >
         <div *ngIf="i !=varia" >

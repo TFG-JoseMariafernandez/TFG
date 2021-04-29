@@ -45,8 +45,8 @@ export class HypothesesComponent implements OnInit {
     name: '',
     type: ' ',
     description:' ',
-    variable_outcome: this.var, 
-    variable: this.var, 
+    variable_outcome: '', 
+    variable: '', 
 
   }];
 
@@ -116,8 +116,8 @@ export class HypothesesComponent implements OnInit {
       name: '',
     type: ' ',
     description:' ',
-    variable: this.var,
-    variable_outcome: this.var, 
+    variable:'',
+    variable_outcome: '', 
     
     });
 

@@ -3,6 +3,7 @@ import {Variables,Type}from '../models/variables'
 import {Context}from '../models/context'
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import * as $ from 'jquery';
 
 
 
@@ -119,13 +120,14 @@ export class VariablesComponent implements OnInit {
   }
 
   guardar(variables: Variables[]): void {
+    this.names = []
+    
 
 
+    for (let i = 0; i < variables.length; i++) {
 
-    for (let i = 0; i < this.variables.length; i++) {
-
-      var element =this.variables[i];
-      this.names.push(element.name)
+      var element = variables[i];
+      
    
       if(!element.name   ){
         this.error = true
@@ -133,7 +135,8 @@ export class VariablesComponent implements OnInit {
       }else if( !element.type  || element.type == ""  ){
         this.error = true
         this.errorMen ='El tipo de alguna variable esta vacio';
-      }else  if( !element.domain || element.domain == " "  && element.type != "OutCome" ){
+      }else  if( (!element.domain || element.domain == " " || element.domain == ""  ) && element.type != "OutCome" ){
+     
         this.error = true
         this.errorMen ='El domain de alguna variable esta vacio';
       }else{
@@ -158,21 +161,30 @@ export class VariablesComponent implements OnInit {
 
       }
 
-      for (let j = 0; j < this.variables.length; j++) {
+      for (let j = 0; j < variables.length; j++) {
       
         if(i != j){
         if(this.variables[i].name == this.variables[j].name){
         this.errorMen ='El nombre de las variables estan repetidos';
         this.error= true;
         this.contadorRep ++;
-        console.log(this.contadorRep)
+      
       }
       }
+      
       }
+     
     }
+ 
 
     if(this.contadorRep == 0 && !this.error) {
+      for (let c = 0; c < variables.length; c++) {
+        const element = this.variables[c];
+        this.names.push(element.name)
 
+        
+      }
+     
       this.error = false;
       this.guarda = variables;
       
@@ -187,16 +199,21 @@ export class VariablesComponent implements OnInit {
     
   }
 
-  saverange(newName:string, old:number) {
- var envioCambios:string[] =[]
-
- 
-   envioCambios.push(newName)
-   envioCambios.push(this.names[old])
+  cambios(newName:string, old:number) {
+ var envioCambios:string[] =[];
 
 
+envioCambios.push(newName)
+envioCambios.push(this.names[old])
+console.log(envioCambios)
 
-    this.change.emit(envioCambios)
+
+
+
+ this.change.emit(envioCambios)
+
+
+  
     
   }
   

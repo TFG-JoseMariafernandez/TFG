@@ -118,7 +118,7 @@ settings: Setting[] = [ {
 
  valorvariable(NameVari:string , value:any){
    const vari = this.Variables?.find(x => x.name == NameVari);
-   console.log(vari)
+   
   
    var bol: boolean = false
    const regex = /^[0-9]*$/;
@@ -130,7 +130,7 @@ settings: Setting[] = [ {
       bol= regex.test(value);
 
      } if(vari?.domain_units == "Float"){
-       console.log('enytra en float')
+       
       
        var valor = parseFloat(value);
       if( valor ){
@@ -140,7 +140,7 @@ settings: Setting[] = [ {
   
 
      } if(vari?.domain_units == "Boolean"){
-      console.log('enytra en boolean')
+      
        
       if ( value == 'true' || value == 'false'){
         bol = true
@@ -172,7 +172,7 @@ settings: Setting[] = [ {
 
 
 this.comprobacion = bol;
-console.log(this.comprobacion)
+
 
 return bol;
 
@@ -285,7 +285,7 @@ this.DesignActual = DesignFormGroup;
     
   }
   borrarBV(va:String){
-    console.log('èntra')
+    
     const vari = this.Variables?.find(x => x.name == va)!;
     var i = this.Variables?.indexOf(vari)!;
    
@@ -325,7 +325,7 @@ this.DesignActual = DesignFormGroup;
   }
 
   guardar(design: Desing[]): void {
-    console.log(this.comprobacion)
+    
     for (let index = 0; index < design.length; index++) {
       const element = design[index];
       if ( !element.design || element.design == " "){
@@ -346,9 +346,10 @@ this.DesignActual = DesignFormGroup;
       
     }
     if(this.comprobacion && !this.error){
+      console.log(design)
  
     this.guarda = design;
-    console.log(this.guarda)
+   
     
     this.enviar.emit(this.guarda); 
     
