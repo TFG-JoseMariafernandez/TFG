@@ -12,6 +12,7 @@
 
 
 </div>
+
   
   <div formArrayName="hypotheses" *ngFor="let hypothese of hypotheses; let i = index " >
     
@@ -19,7 +20,7 @@
     
     <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
         Name      
-        <input [(ngModel)]="hypothese.name" placeholder="Name"/>
+        <input id = "name" [(ngModel)]="hypothese.name" placeholder="Name"/>
         <div *ngFor="let v of hypotheses; let varia = index " >
           <div *ngIf="i !=varia" >
           

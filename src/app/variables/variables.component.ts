@@ -16,25 +16,9 @@ export class VariablesComponent implements OnInit {
   public Editor = ClassicEditor;
   
 
-  T:Type[]  =[ {
-    name : '',
-    description:'',
-    
-    
-    }];
+  T:Type[]  =[ ];
   
-  variables: Variables[] = [{
-    
-    name: '',
-    description: ' ',
-    domain:' ',
-    type: '',
-    units:'',
-    domain_units:"",
-    ordered: false,
-    types: this.T,
-
-  }];
+  variables: Variables[] = [];
   
 
   varActual : Variables | undefined ;
@@ -57,7 +41,7 @@ export class VariablesComponent implements OnInit {
   change: EventEmitter<String[]> = new EventEmitter<String[]>();
   selectedVar: Variables | undefined;
   guarda!: Variables[]
-  @Input() Contexto: Context | undefined;
+
 
   
 
@@ -205,7 +189,7 @@ export class VariablesComponent implements OnInit {
 
 envioCambios.push(newName)
 envioCambios.push(this.names[old])
-console.log(envioCambios)
+
 
 
 

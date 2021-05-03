@@ -9,7 +9,7 @@
   
  
  
-  <button (click)="agregarDesign()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  <button id= "agregarDesign"  (click)="agregarDesign()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
   <div *ngIf= "!comprobacion">
@@ -36,7 +36,7 @@
      
        <h2>Design     </h2>
       
-        <select [(ngModel)]="design.design" placeholder="Design">
+        <select id = "design.design" [(ngModel)]="design.design" placeholder="Design">
             <option value="Custom">Custom/Exhaustively described</option>
             <option value="Pre-test/post-test">Pre-test/post-test control group design</option>
             <option value="solomon">Solomon four group design </option>
@@ -48,7 +48,7 @@
       
         <h2>Description  </h2> 
         
-        <ckeditor  max-width= 50%;    [editor]="Editor" [(ngModel)]="design.description" placeholder="description"></ckeditor>
+        <ckeditor id = "design.description" max-width= 50%;    [editor]="Editor" [(ngModel)]="design.description" placeholder="description"></ckeditor>
       </mat-card>
       
        <h2> Parameters
@@ -68,23 +68,23 @@
           
            
              Name      
-              <input [(ngModel)]="parameters.name" placeholder="Name"/>
+              <input id ="parameters.name" [(ngModel)]="parameters.name" placeholder="Name"/>
             
             
              value      
-              <input [(ngModel)]="parameters.value" placeholder="description"/>
+              <input id ="parameters.value" [(ngModel)]="parameters.value" placeholder="description"/>
             
             
              description      
-              <input [(ngModel)]="parameters.description" placeholder="description"/>
+              <input id ="parameters.description" [(ngModel)]="parameters.description" placeholder="description"/>
             
             
              measure In       
-                <input [(ngModel)]="parameters.measure_in" placeholder="measure_in"/>
+                <input id ="parameters.measure_in"  [(ngModel)]="parameters.measure_in" placeholder="measure_in"/>
               
               
               
-              <button (click)="removerParameters(i,p)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+              <button  id="removerParameters" (click)="removerParameters(i,p)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
              
             
         </div>
@@ -94,7 +94,7 @@
       <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
 
       <h2>Random Assignment </h2>  
-      <select [(ngModel)]="design.random_assignment" placeholder="random_assignment">
+      <select id="design.random_assignment" [(ngModel)]="design.random_assignment" placeholder="random_assignment">
         <option value= 'true'>true</option>
         <option value= 'false' >false</option>
       </select>
@@ -103,7 +103,7 @@
     
   
     Description    of assignement
-    <input [(ngModel)]="design.description_assignmentMethod" placeholder="description_assignmentMethod"/> 
+    <input id = "design.description_assignmentMethod" [(ngModel)]="design.description_assignmentMethod" placeholder="description_assignmentMethod"/> 
     
   </div>
 
@@ -115,7 +115,7 @@
 <h2>Groups
 
 
-    <button (click)="agregarGroups(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <button id="agregarGroups" (click)="agregarGroups(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
     </button></h2>
     <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218); ">
@@ -128,16 +128,16 @@
       
        
          Name      
-          <input [(ngModel)]="group.name" placeholder="Name"/>
+          <input id = "group.name" [(ngModel)]="group.name" placeholder="Name"/>
         
         
          size      
-          <input [(ngModel)]="group.size" placeholder="size"/>
+          <input  id = "group.size" [(ngModel)]="group.size" placeholder="size"/>
         
         
       
           
-          <button (click)="removerGroup(i,g)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+          <button id = "removerGroup" (click)="removerGroup(i,g)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
          
         
   </div>
@@ -152,7 +152,7 @@
   <h2>Protocol
 
 
-    <button (click)="agregarProtocol(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <button id ="agregarProtocol" (click)="agregarProtocol(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
     </button></h2>
     <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
@@ -164,12 +164,12 @@
       
        
          Name      
-          <input [(ngModel)]="protocol.name" placeholder="Name"/>
+          <input id  ="protocol.name" [(ngModel)]="protocol.name" placeholder="Name"/>
         
         
          type      
           
-          <select  [(ngModel)]="protocol.type" placeholder="type">
+          <select id  ="protocol.type"  [(ngModel)]="protocol.type" placeholder="type">
             <option value="Treatment">Treatment</option>
             <option value="Measurement">Measurement</option>
             <option value="Treatment_&_Measurement">Treatment & Measurement </option>
@@ -179,7 +179,7 @@
         
          On group      
       
-          <select [(ngModel)]="protocol.onGroup" placeholder="onGroup">
+          <select id  ="protocol.onGroup" [(ngModel)]="protocol.onGroup" placeholder="onGroup">
             <option  *ngFor="let group of design.groups; let i = index " value="{{group}}">{{group.name}} </option>
                        
           </select>
@@ -189,7 +189,7 @@
           Variable
 
 
-          <button (click)="agregarSetting(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          <button id  ="agregarSetting" (click)="agregarSetting(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
             +
           </button>
           <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218);">
@@ -204,7 +204,7 @@
              <div *ngIf="protocol.type == 'Treatment' || protocol.type == 'Treatment_&_Measurement'">
                Name      
             
-                <select [(ngModel)]="setting.varName" placeholder="Name">
+                <select id = "setting.varName" [(ngModel)]="setting.varName" placeholder="Name">
                   <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
                 
                              
@@ -213,14 +213,14 @@
               
                Value     
                
-                <input [(ngModel)]="setting.varValue" placeholder="type"/>
+                <input id  ="setting.varValue"  [(ngModel)]="setting.varValue" placeholder="type"/>
                 <div *ngIf="!valorvariable(setting.varName,setting.varValue)"> 
                   <h1 style="color: red;" > ERROR+</h1>
                 </div> 
               </div>
               <div *ngIf="protocol.type == 'Measurement' || protocol.type == 'Treatment_&_Measurement'">
                 Outcome
-              <select  [(ngModel)]="setting.varOutcome" placeholder="outcome">
+              <select  id = "setting.varOutcome" [(ngModel)]="setting.varOutcome" placeholder="outcome">
                 <option  *ngFor="let variable of Variable_Outcome; let i = index " value="{{variable.name}}">{{variable.name}} </option>
                            
               </select>
@@ -230,7 +230,7 @@
               
             
                 
-                <button (click)="removerSetting(i,pr,st)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+                <button id = "removerSetting" (click)="removerSetting(i,pr,st)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
                
               
         </div>
@@ -238,7 +238,7 @@
           </mat-card>
       
           
-          <button (click)="removerProtocol(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+          <button id = "removerProtocol" (click)="removerProtocol(i,pr)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
          
         
   </div>
@@ -251,7 +251,7 @@
 
 <div  *ngIf = " contador != Variables?.length && Variables?.length" >
 
-    <button (click)="agregarBloquingVars(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <button id ="agregarBloquingVars" (click)="agregarBloquingVars(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       +
     </button> 
   </div>
@@ -264,7 +264,7 @@
     
       
       
-    <select [(ngModel)]="bloquingVar.name" placeholder="variable name">
+    <select id ="bloquingVar.name"  [(ngModel)]="bloquingVar.name" placeholder="variable name">
         <option  *ngFor="let variable of Variables; let i = index " value="{{variable.name}}">{{variable.name}}   </option>
       
                    
@@ -272,7 +272,7 @@
     
       
           
-          <button (click)="removerVars(i,bv)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+          <button id ="removerVars" (click)="removerVars(i,bv)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
          
         
   </div>
@@ -287,7 +287,7 @@
     
   
     
-    <button (click)="removerDesign(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon" style="margin-left: 40%;"> eliminar</button>
+    <button id = "removerDesign" (click)="removerDesign(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon" style="margin-left: 40%;"> eliminar</button>
    
   
     

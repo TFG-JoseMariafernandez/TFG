@@ -1,7 +1,9 @@
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
   <mat-label style="font-size: large; font-weight: bold;" ><span>Variables </span></mat-label>
-  <button (click)="agregarVariable()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  
+ 
+  <button id = "agregarVariable" (click)="agregarVariable()"  [(ngModel)]="variables"  mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
 
@@ -10,16 +12,17 @@
  
 
   </div>
+   
 
-<div formArrayName="variable" *ngFor="let variable of variables; let i = index " >
+<div  formArrayName="variable" *ngFor="let variable of variables; let i = index "   >
   
   <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
     
     
      
       Name      
-        <input [(ngModel)]="variable.name" placeholder="Name" id = "name"     (blur)="cambios(variable.name,i)" />
-
+        <input [attr.id]='"name"+i'  [(ngModel)]="variable.name" placeholder="Name"      (blur)="cambios(variable.name,i)" />
+       
         
 
             
@@ -36,7 +39,7 @@
 
       Type
        
-        <select [(ngModel)]="variable.type" placeholder="type"  >
+        <select  id="variable.type" [(ngModel)]="variable.type" placeholder="type"  >
           <option value="Controllable_factor">Controllable factor </option>
           <option value="Not_Controllable factor">Not Controllable factor</option>
           <option value="OutCome">Outcome ( a.k.a depend variable or response variable)</option>
@@ -50,13 +53,13 @@
    Description   
        
         
-        <ckeditor  max-width= 50%;    [editor]="Editor" [(ngModel)]="variable.description" placeholder="description"></ckeditor>
+        <ckeditor id ="variable.description" max-width= 50%;    [editor]="Editor" [(ngModel)]="variable.description" placeholder="description"></ckeditor>
         
   
        Domain
       
       
-        <select  [(ngModel)]="variable.domain" placeholder="domain">
+        <select  id ="variable.domain"  [(ngModel)]="variable.domain" placeholder="domain">
           <option value="One_of">One of</option>
           <option value="Of_type">of type</option>
         </select>
@@ -72,7 +75,7 @@
 
 
        
-        <select [(ngModel)]="variable.domain_units" placeholder="units">
+        <select  id ="variable.domain_units"  [(ngModel)]="variable.domain_units" placeholder="units">
           <option value="Float">Float</option>
           <option value="Integer">Integer</option>
           <option value="String">String</option>
@@ -91,11 +94,11 @@
       <td>  Domain
 
 
-        <button (click)="agregarType(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+        <button id ="agregarType"  (click)="agregarType(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
           +
         </button>
         Ordered
-        <select [(ngModel)]="variable.ordered" placeholder="units">
+        <select id="variable.ordered" [(ngModel)]="variable.ordered" placeholder="units">
           <option value= true >True</option>
           <option value= false >False</option>
          
@@ -109,17 +112,17 @@
       
            
          Name      
-              <input [(ngModel)]="type.name" placeholder="Name"/>
+              <input id="type.name"  [(ngModel)]="type.name" placeholder="Name"/>
             
           
     Description      
-              <input [(ngModel)]="type.description" placeholder="description"/>
+              <input id="type.description"  [(ngModel)]="type.description" placeholder="description"/>
             
        
             
         
               
-              <button (click)="removerType(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+              <button  id= "removerType" (click)="removerType(i,j)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
              
       </div>
 
@@ -134,7 +137,7 @@
   
       
   Units   
-  <input [(ngModel)]="variable.units" placeholder="units"/> 
+  <input id ="variable.units" [(ngModel)]="variable.units" placeholder="units"/> 
     
       
       
@@ -143,7 +146,7 @@
 
   
   
-    <button (click)="removerVariables(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
+    <button id ="removerVariables" (click)="removerVariables(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon"> eliminar</button>
    
 
 

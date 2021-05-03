@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
-import { Goal, Experimenters } from '../models/context';
 
 import { ContextComponent } from './context.component';
-import { ComponentFixtureAutoDetect } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
@@ -81,6 +79,7 @@ describe('ContextComponent: input', () => {
   
     document.getElementById('agregarExperimenters')?.click();
     fixture.detectChanges();
+ 
     const Exname = (<HTMLInputElement> document.getElementById('experimenters.name'));
     Exname.value = 'Foo';
     Exname.dispatchEvent(new Event('input'));
@@ -96,6 +95,7 @@ describe('ContextComponent: input', () => {
     const task = (<HTMLInputElement> document.getElementById('experimenters.task'));
     task.value = 'Foo';
     task.dispatchEvent(new Event('input'));
+
 
  
     document.getElementById('guardar')?.click();
@@ -118,10 +118,12 @@ describe('ContextComponent: input', () => {
     expect(component.experimenters[0].rol).toBe('Foo');
     expect(component.experimenters[0].task).toBe('Foo');
     expect(component.experimenters[0].email).toBe('Foo');
+ 
     //experimenters: borrar uno
-    document.getElementById('removerExperimenters')?.click();
+   document.getElementById('removerExperimenters')?.click();
     fixture.detectChanges();
     expect(component.experimenters.length).toBe(0);
+ 
   
  
   });
