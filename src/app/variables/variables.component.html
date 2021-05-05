@@ -1,18 +1,19 @@
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <mat-label style="font-size: large; font-weight: bold;" ><span>Variables </span></mat-label>
+  <mat-label style="font-size: large; font-weight: bold;" >
+    <span>Variables </span>
   
  
-  <button id = "agregarVariable" (click)="agregarVariable()"  [(ngModel)]="variables"  mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  <button  (click)="agregarVariable()"  id = "agregarVariable" name="variables" ngDefaultControl  mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
-
+</mat-label>
   <div *ngIf= "error">
     <h1 style="color: red;" > {{errorMen}}</h1>
  
 
   </div>
-   
+
 
 <div  formArrayName="variable" *ngFor="let variable of variables; let i = index "   >
   
@@ -155,7 +156,9 @@
 
 
 </mat-card>
+
 </div>
+
     <button  style="margin-left: 50%" (click)="guardar(variables)"> GUARDAR</button>
   
 

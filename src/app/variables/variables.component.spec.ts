@@ -41,14 +41,15 @@ describe('VariablesComponent: input', () => {
     
    
     compiled = fixture.debugElement.nativeElement;
- 
+    fixture.detectChanges()
   });
 
   it('new var', async () => {
   
     document.getElementById('agregarVariable')?.click();
-    console.log(fixture)
     fixture.detectChanges()
+
+ 
     
 
       
