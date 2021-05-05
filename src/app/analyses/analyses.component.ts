@@ -101,7 +101,13 @@ having: Having[] =  [{
   ngOnInit(): void {
 
   }
+  valorvariableAlpha(valor:string){
+    var bol: boolean = false
+    const regex = /^[0-9]*$/;
+    bol= regex.test(valor);
+    return bol;
 
+  }
 
   valorvariable(NameVari:string , value:any){
     const vari = this.Variables?.find(x => x.name == NameVari);

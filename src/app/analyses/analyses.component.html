@@ -88,6 +88,9 @@
                 <input [(ngModel)]="table.alpha" placeholder="Name"/>
 
               </div>
+              <div *ngIf="!valorvariableAlpha(table.alpha)"> 
+                <h1 style="color: red;" > El valor del alpha debe ser numerico </h1>
+              </div> 
             </div>
             
               </mat-card>
@@ -259,7 +262,7 @@
                  aqui  {{hav.var.name}}
                 
                   <div *ngIf="!valorvariable(hav.var.name,hav.value)"> 
-                    <h1 style="color: red;" > ERROR+</h1>
+                    <h1 style="color: red;" > ERROR</h1>
                   </div> 
                               
 
