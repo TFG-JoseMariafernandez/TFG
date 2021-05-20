@@ -40,7 +40,7 @@
 
       Type
        
-        <select  id="variable.type" [(ngModel)]="variable.type" placeholder="type"  >
+        <select class = "dropdown0" [attr.id]='"dropdown"+i' [(ngModel)]="variable.type" placeholder="type"  >
           <option value="Controllable_factor">Controllable factor </option>
           <option value="Not_Controllable factor">Not Controllable factor</option>
           <option value="OutCome">Outcome ( a.k.a depend variable or response variable)</option>
@@ -54,13 +54,13 @@
    Description   
        
         
-        <ckeditor id ="variable.description" max-width= 50%;    [editor]="Editor" [(ngModel)]="variable.description" placeholder="description"></ckeditor>
+        <ckeditor [attr.id]='"variable.description"+i' max-width= 50%;    [editor]="Editor" [(ngModel)]="variable.description" placeholder="description"></ckeditor>
         
   
        Domain
       
       
-        <select  id ="variable.domain"  [(ngModel)]="variable.domain" placeholder="domain">
+        <select [attr.id]='"variable.domain"+i'  [(ngModel)]="variable.domain" placeholder="domain">
           <option value="One_of">One of</option>
           <option value="Of_type">of type</option>
         </select>
@@ -76,7 +76,7 @@
 
 
        
-        <select  id ="variable.domain_units"  [(ngModel)]="variable.domain_units" placeholder="units">
+        <select  [attr.id]='"variable.domain_units"+i'  [(ngModel)]="variable.domain_units" placeholder="units">
           <option value="Float">Float</option>
           <option value="Integer">Integer</option>
           <option value="String">String</option>
@@ -99,7 +99,7 @@
           +
         </button>
         Ordered
-        <select id="variable.ordered" [(ngModel)]="variable.ordered" placeholder="units">
+        <select [attr.id]='"variable.ordered"+i' [(ngModel)]="variable.ordered" placeholder="units">
           <option value= true >True</option>
           <option value= false >False</option>
          
@@ -113,11 +113,11 @@
       
            
          Name      
-              <input id="type.name"  [(ngModel)]="type.name" placeholder="Name"/>
+              <input [attr.id]='"type.name"+i'  [(ngModel)]="type.name" placeholder="Name"/>
             
           
     Description      
-              <input id="type.description"  [(ngModel)]="type.description" placeholder="description"/>
+              <input [attr.id]='"type.description"+i'  [(ngModel)]="type.description" placeholder="description"/>
             
        
             
@@ -138,7 +138,7 @@
   
       
   Units   
-  <input id ="variable.units" [(ngModel)]="variable.units" placeholder="units"/> 
+  <input [attr.id]='"variable.units"+i' [(ngModel)]="variable.units" placeholder="units"/> 
     
       
       
