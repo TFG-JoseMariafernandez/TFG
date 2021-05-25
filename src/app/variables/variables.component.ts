@@ -86,7 +86,7 @@ export class VariablesComponent implements OnInit {
     const typeFormGroup  = ({
       name: '',
     description: ' ',
-    ordered:false,
+   
    
     });
     vars.types.push(typeFormGroup);  

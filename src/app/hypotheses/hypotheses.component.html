@@ -2,7 +2,7 @@
  
   <mat-label style="font-size: large; font-weight: bold;">
   <span>Hypotheses </span>
-  <button (click)="agregarHypotheses()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  <button id = 'agrgarHypotheses' (click)="agregarHypotheses()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>
 </mat-label>
@@ -20,7 +20,7 @@
     
     <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
         Name      
-        <input id = "name" [(ngModel)]="hypothese.name" placeholder="Name"/>
+        <input [attr.id]='"name"+i' id = "name" [(ngModel)]="hypothese.name" placeholder="Name"/>
         <div *ngFor="let v of hypotheses; let varia = index " >
           <div *ngIf="i !=varia" >
           
@@ -34,7 +34,7 @@
       
       Type   
         
-        <select   [(ngModel)]="hypothese.type" placeholder="type">
+        <select class='type0' [attr.id]='"type"+i'  [(ngModel)]="hypothese.type" placeholder="type">
             <option value="impacted">Is impacted significatly by </option>
             <option value="Correloated">Is correloated with </option>
             <option value="Described">Described in natural language </option>
@@ -52,14 +52,14 @@
      
         variable    outcome
         
-        <select  [(ngModel)]="hypothese.variable" placeholder="description">
+        <select [attr.id]='"variable"+i' [(ngModel)]="hypothese.variable" placeholder="description">
             <option  *ngFor="let variable of Variable; let i = index " value="{{variable.name}}">{{variable.name}} </option>
                        
           </select>
         
       
      variable
-      <select  [(ngModel)]="hypothese.variable_outcome" placeholder="description">
+      <select [attr.id]='"outcome"+i'   [(ngModel)]="hypothese.variable_outcome" placeholder="description">
       <option  *ngFor="let variableOut of Variable_Outcome ; let j = index " value="{{variableOut.name}}">{{variableOut.name}} </option>
                  
     </select>

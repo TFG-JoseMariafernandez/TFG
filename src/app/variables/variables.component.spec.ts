@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
+
 describe('VariablesComponent: input', () => {
   let component: VariablesComponent;
   let fixture: ComponentFixture<VariablesComponent>;
@@ -64,29 +65,55 @@ describe('VariablesComponent: input', () => {
     select.value = select.options[0].value;  // <-- select a new value
     select.dispatchEvent(new Event('change'));
     fixture.detectChanges();
+
   
-  console.log(select.options[0].textContent);
+
     
 
-    const variabledescription = (<HTMLInputElement> document.getElementById('variable.description0'));
-    variabledescription.value = 'Foo';
-    variabledescription.dispatchEvent(new Event('input'));
+    const domain: HTMLSelectElement = fixture.debugElement.query(By.css('.domain0')).nativeElement;
+    domain.value = domain.options[0].value;  // <-- select a new value
+    domain.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    const ordered: HTMLSelectElement = fixture.debugElement.query(By.css('.ordered0')).nativeElement;
+    ordered.value = ordered.options[0].value;  // <-- select a new value
+    ordered.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
     
    
     
-    
-
-    console.log(component)
+    document.getElementById('agregarType')?.click();
+    fixture.detectChanges();
  
-    
-
-      
+    const Exname = (<HTMLInputElement> document.getElementById('type.name0'));
+    Exname.value = 'Foo';
+    Exname.dispatchEvent(new Event('input'));
+    const email = (<HTMLInputElement> document.getElementById('type.description0'));
+    email.value = 'Foo';
+    email.dispatchEvent(new Event('input'));
+    const organization = (<HTMLInputElement> document.getElementById('variable.units0'));
+    organization.value = 'Foo';
+    organization.dispatchEvent(new Event('input'));
   
-   
-    //VARIABLE
 
-      console.log('aquiiii')
-      
+
+ 
+    document.getElementById('guardar')?.click();
+    fixture.detectChanges();
+
+expect(component.variables[0].name).toBe('Foo');
+expect(component.variables[0].units).toBe('Foo');
+expect(component.variables[0].ordered).toBe('true');
+expect(component.variables[0].domain).toBe('One_of');
+expect(component.variables[0].type).toBe('Controllable_factor');
+expect(component.variables[0].types.length).toBe(1);
+expect(component.variables[0].types[0].name).toBe('Foo');
+expect(component.variables[0].types[0].description).toBe('Foo');
+
+
+
+
+
 
   
   

@@ -54,13 +54,13 @@
    Description   
        
         
-        <ckeditor [attr.id]='"variable.description"+i' max-width= 50%;    [editor]="Editor" [(ngModel)]="variable.description" placeholder="description"></ckeditor>
+        <ckeditor class= 'descripcion' [attr.id]='"variable.description"+i' max-width= 50%;    [editor]="Editor" [(ngModel)]="variable.description" placeholder="description"></ckeditor>
         
   
        Domain
       
       
-        <select [attr.id]='"variable.domain"+i'  [(ngModel)]="variable.domain" placeholder="domain">
+        <select class = 'domain0' [attr.id]='"variable.domain"+i'  [(ngModel)]="variable.domain" placeholder="domain">
           <option value="One_of">One of</option>
           <option value="Of_type">of type</option>
         </select>
@@ -99,7 +99,7 @@
           +
         </button>
         Ordered
-        <select [attr.id]='"variable.ordered"+i' [(ngModel)]="variable.ordered" placeholder="units">
+        <select class = 'ordered0' [attr.id]='"variable.ordered"+i' [(ngModel)]="variable.ordered" placeholder="units">
           <option value= true >True</option>
           <option value= false >False</option>
          
