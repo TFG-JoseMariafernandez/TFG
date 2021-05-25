@@ -52,14 +52,14 @@
      
         variable    outcome
         
-        <select [attr.id]='"variable"+i' [(ngModel)]="hypothese.variable" placeholder="description">
+        <select calss = 'vari0' [attr.id]='"variable"+i' [(ngModel)]="hypothese.variable" placeholder="description">
             <option  *ngFor="let variable of Variable; let i = index " value="{{variable.name}}">{{variable.name}} </option>
                        
           </select>
         
       
      variable
-      <select [attr.id]='"outcome"+i'   [(ngModel)]="hypothese.variable_outcome" placeholder="description">
+      <select class = "outcome0" [attr.id]='"outcome"+i'   [(ngModel)]="hypothese.variable_outcome" placeholder="description">
       <option  *ngFor="let variableOut of Variable_Outcome ; let j = index " value="{{variableOut.name}}">{{variableOut.name}} </option>
                  
     </select>
