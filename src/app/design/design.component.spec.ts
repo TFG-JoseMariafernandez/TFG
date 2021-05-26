@@ -1,13 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { By } from '@angular/platform-browser';
-import { Goal, Experimenters } from '../models/context';
+
 
 import { DesignComponent } from './design.component';
-import { ComponentFixtureAutoDetect } from '@angular/core/testing';
+
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {  MatCardModule} from "@angular/material/card";
+import {By} from "@angular/platform-browser";
+import {
+  MatGridListModule,
+
+} from '@angular/material/grid-list';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 
@@ -15,14 +24,13 @@ describe('DesignComponent: input', () => {
   let component: DesignComponent;
   let fixture: ComponentFixture<DesignComponent>;
   let compiled: any;
-  let heroService: any;
 
 
   
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, RouterTestingModule ],
+      imports: [ FormsModule, RouterTestingModule ,CKEditorModule,MatFormFieldModule,MatGridListModule,MatCardModule ],
       declarations: [ DesignComponent ],
       providers: [
         {
@@ -40,10 +48,76 @@ describe('DesignComponent: input', () => {
 
     component = fixture.componentInstance;
 
-    fixture.detectChanges();
+    
+   
     compiled = fixture.debugElement.nativeElement;
- 
+    fixture.detectChanges()
   });
 
+  it('new var', async () => {
+  
+    document.getElementById('agregarDesign')?.click();
+    fixture.detectChanges()
+
+    const select: HTMLSelectElement = fixture.debugElement.query(By.css('.design')).nativeElement;
+    select.value = select.options[1].value;  // <-- select a new value
+    select.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    const Exname = (<HTMLInputElement> document.getElementById('parameters.name'));
+    Exname.value = 'Foo';
+    Exname.dispatchEvent(new Event('input'));
+    const value = (<HTMLInputElement> document.getElementById('parameters.value'));
+    value.value = 'Foo';
+    value.dispatchEvent(new Event('input'));
+    const description = (<HTMLInputElement> document.getElementById('parameters.description'));
+    description.value = 'Foo';
+    description.dispatchEvent(new Event('input'));
+    const measure_in = (<HTMLInputElement> document.getElementById('parameters.measure_in'));
+    measure_in.value = 'Foo';
+    measure_in.dispatchEvent(new Event('input'));
+    
+  
+
+    
+    expect(component.Desing.length).toBe(2);
+    expect(component.Desing[0].design).toBe('Pre-test/post-test');
+    expect(component.Desing[0].design_parameters.length).toBe(1);
+    expect(component.Desing[0].design_parameters[0].name).toBe("Foo");
+    expect(component.Desing[0].design_parameters[0].value).toBe("Foo");
+    expect(component.Desing[0].design_parameters[0].measure_in).toBe("Foo");
+    expect(component.Desing[0].design_parameters[0].description).toBe("Foo");
+
+    document.getElementById('removerParameters')?.click();
+    fixture.detectChanges();
+    expect(component.Desing[0].design_parameters.length).toBe(0);
+
+
+  
+   
+    
+    
  
+   
+  
+
+
+ 
+    document.getElementById('guardar')?.click();
+    fixture.detectChanges();
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+ 
+  });
 });

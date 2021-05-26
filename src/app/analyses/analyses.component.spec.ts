@@ -61,34 +61,35 @@ describe('AnalysesComponent: input', () => {
     const Name = (<HTMLInputElement> document.getElementById('name0'));
     Name.value = 'Foo';
     Name.dispatchEvent(new Event('input'));
-    document.getElementById('agregarTable')?.click();
-    fixture.detectChanges();
+   
     const tableId = (<HTMLInputElement> document.getElementById('tableId0'));
     tableId.value = 'Foo';
     tableId.dispatchEvent(new Event('input'));
     const select: HTMLSelectElement = fixture.debugElement.query(By.css('.analysesType')).nativeElement;
-    select.value = select.options[0].value;  // <-- select a new value
+    select.value = select.options[9].value;  // <-- select a new value
     select.dispatchEvent(new Event('change'));
     fixture.detectChanges();
-    const selectTest: HTMLSelectElement = fixture.debugElement.query(By.css('.test')).nativeElement;
-    selectTest.value = selectTest.options[0].value;  // <-- select a new value
+    const selectTest: HTMLSelectElement = fixture.debugElement.query(By.css('.test0')).nativeElement;
+    selectTest.value = selectTest.options[3].value;  // <-- select a new value
     selectTest.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     const alpha = (<HTMLInputElement> document.getElementById('alpha0'));
     alpha.value = 'Foo';
     alpha.dispatchEvent(new Event('input'));
 
-    const group_var: HTMLSelectElement = fixture.debugElement.query(By.css('.group_Var')).nativeElement;
-    group_var.value = group_var.options[0].value;  // <-- select a new value
-    group_var.dispatchEvent(new Event('change'));
-    fixture.detectChanges();
-    document.getElementById('agregarOfGroup')?.click();
-    fixture.detectChanges()
- 
-    const group_name: HTMLSelectElement = fixture.debugElement.query(By.css('.groupName')).nativeElement;
-    group_name.value = group_name.options[0].value;  // <-- select a new value
-    group_name.dispatchEvent(new Event('change'));
-    fixture.detectChanges();
     console.log(component);
+    
+    expect(component.analyses.length).toBe(2);
+    expect(component.analyses[0].name).toBe('Foo');
+    expect(component.analyses[0].table[0].analyses_type).toBe('null_hypothesis_test');
+    expect(component.analyses[0].table.length).toBe(1);
+    expect(component.analyses[0].table[0].id).toBe("Foo");
+    expect(component.analyses[0].table[0].test).toBe("anova");
+    expect(component.analyses[0].table[0].alpha).toBe("Foo");
+    document.getElementById('removerTables')?.click();
+    fixture.detectChanges()
+    expect(component.analyses[0].table.length).toBe(0);
+
+
   });
 });

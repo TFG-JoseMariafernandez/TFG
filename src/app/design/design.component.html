@@ -36,7 +36,7 @@
      
        <h2>Design     </h2>
       
-        <select id = "design.design" [(ngModel)]="design.design" placeholder="Design">
+        <select id = "design" class = "design" [(ngModel)]="design.design" placeholder="Design">
             <option value="Custom">Custom/Exhaustively described</option>
             <option value="Pre-test/post-test">Pre-test/post-test control group design</option>
             <option value="solomon">Solomon four group design </option>
@@ -54,7 +54,7 @@
        <h2> Parameters
 
 
-        <button (click)="agregarParameters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+        <button  id = "agregarParameters"  (click)="agregarParameters(i)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
           +
         </button>
       </h2>

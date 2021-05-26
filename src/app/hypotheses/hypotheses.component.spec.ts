@@ -66,6 +66,11 @@ describe('HypothesesComponent: input', () => {
     select.dispatchEvent(new Event('change'));
     fixture.detectChanges();
 
+    expect(component.hypotheses.length).toBe(2);
+    expect(component.hypotheses[0].name).toBe('Foo');
+    expect(component.hypotheses[0].type).toBe('impacted');
+  
+
   
 
 
