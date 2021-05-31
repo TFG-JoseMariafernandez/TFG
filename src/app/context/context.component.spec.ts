@@ -9,6 +9,7 @@ import { ActivatedRoute, convertToParamMap } from '@angular/router';
 
 
 
+
 describe('ContextComponent: input', () => {
   let component: ContextComponent;
   let fixture: ComponentFixture<ContextComponent>;
@@ -40,8 +41,7 @@ describe('ContextComponent: input', () => {
     compiled = fixture.debugElement.nativeElement;
  
   });
-
-  it('new context', async () => {
+  function cargaDatos(){
     //ABSTRACT
     const AbsatractName = (<HTMLInputElement> document.getElementById('Context1'));
     AbsatractName.value = 'Foo';
@@ -95,36 +95,50 @@ describe('ContextComponent: input', () => {
     const task = (<HTMLInputElement> document.getElementById('experimenters.task'));
     task.value = 'Foo';
     task.dispatchEvent(new Event('input'));
-
-
+ 
+ 
  
     document.getElementById('guardar')?.click();
     fixture.detectChanges();
+     
+ }
+
+
+
+  it('new abstract', async () => {
+    cargaDatos();
+   
     expect(component.absctract.Context).toBe('Foo');
     expect(component.absctract.Goal).toBe('Foo');
     expect(component.absctract.Method).toBe('Foo');
     expect(component.absctract.Result).toBe('Foo');
     expect(component.absctract.Conclusions).toBe('Foo');
-
+  });
+  it('new goal', async () => {
+    cargaDatos();
     expect(component.goal.analyce).toBe('Foo');
     expect(component.goal.context_of).toBe('Foo');
     expect(component.goal.point_of_view).toBe('Foo');
     expect(component.goal.purpose_of).toBe('Foo');
     expect(component.goal.respect_to).toBe('Foo')
-
+  });
+  it('new experimenter', async () => {
+    cargaDatos();
     expect(component.experimenters.length).toBe(1);
     expect(component.experimenters[0].name).toBe('Foo');
     expect(component.experimenters[0].organization).toBe('Foo');
     expect(component.experimenters[0].rol).toBe('Foo');
     expect(component.experimenters[0].task).toBe('Foo');
     expect(component.experimenters[0].email).toBe('Foo');
- 
+  });
+  it('delete Experimenter', async () => {
+    cargaDatos();
     //experimenters: borrar uno
    document.getElementById('removerExperimenters')?.click();
     fixture.detectChanges();
     expect(component.experimenters.length).toBe(0);
- 
+  });
   
  
-  });
+ 
 });

@@ -53,10 +53,8 @@ describe('DesignComponent: input', () => {
     compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges()
   });
-
-  it('new var', async () => {
-  
-    document.getElementById('agregarDesign')?.click();
+function cargaDatos(){
+  document.getElementById('agregarDesign')?.click();
     fixture.detectChanges()
 
     const select: HTMLSelectElement = fixture.debugElement.query(By.css('.design')).nativeElement;
@@ -75,10 +73,9 @@ describe('DesignComponent: input', () => {
     const measure_in = (<HTMLInputElement> document.getElementById('parameters.measure_in'));
     measure_in.value = 'Foo';
     measure_in.dispatchEvent(new Event('input'));
-    
-  
-
-    
+}
+  it('new design', async () => {
+    cargaDatos()
     expect(component.Desing.length).toBe(2);
     expect(component.Desing[0].design).toBe('Pre-test/post-test');
     expect(component.Desing[0].design_parameters.length).toBe(1);
@@ -87,37 +84,38 @@ describe('DesignComponent: input', () => {
     expect(component.Desing[0].design_parameters[0].measure_in).toBe("Foo");
     expect(component.Desing[0].design_parameters[0].description).toBe("Foo");
 
+   
+
+    document.getElementById('guardar')?.click();
+    fixture.detectChanges();
+  });
+  it('new design_parameters table', async () => {
+  
+    cargaDatos()
+    expect(component.Desing[0].design_parameters.length).toBe(1);
+    expect(component.Desing[0].design_parameters[0].name).toBe("Foo");
+    expect(component.Desing[0].design_parameters[0].value).toBe("Foo");
+    expect(component.Desing[0].design_parameters[0].measure_in).toBe("Foo");
+    expect(component.Desing[0].design_parameters[0].description).toBe("Foo");
+
+    
+  });
+  it('delete design_parameters table', async () => {
+    cargaDatos()
     document.getElementById('removerParameters')?.click();
     fixture.detectChanges();
     expect(component.Desing[0].design_parameters.length).toBe(0);
-
-
-  
-   
     
+
     
- 
-   
-  
-
-
- 
-    document.getElementById('guardar')?.click();
+  });
+  it('delete design', async () => {
+    cargaDatos()
+    document.getElementById('removerDesign')?.click();
     fixture.detectChanges();
+    expect(component.Desing.length).toBe(1);
+    
 
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
- 
+    
   });
 });

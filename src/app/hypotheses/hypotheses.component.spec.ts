@@ -53,9 +53,7 @@ describe('HypothesesComponent: input', () => {
     compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges()
   });
-
-  it('new Hypotheses', async () => {
-  
+  function cargaDatos(){
     document.getElementById('agrgarHypotheses')?.click();
     fixture.detectChanges()
     const name = (<HTMLInputElement> document.getElementById('name0'));
@@ -65,33 +63,29 @@ describe('HypothesesComponent: input', () => {
     select.value = select.options[0].value;  // <-- select a new value
     select.dispatchEvent(new Event('change'));
     fixture.detectChanges();
+  }
+
+  it('new Hypotheses', async () => {
+  
+    cargaDatos()
 
     expect(component.hypotheses.length).toBe(2);
     expect(component.hypotheses[0].name).toBe('Foo');
     expect(component.hypotheses[0].type).toBe('impacted');
   
-
-  
-
-
-
- 
     document.getElementById('guardar')?.click();
     fixture.detectChanges();
 
-
-
-
-
-
-
-
+  });
+  it('delete Hypotheses', async () => {
   
+    cargaDatos()
+    document.getElementById('removerHypotheses')?.click();
+    fixture.detectChanges();
+    expect(component.hypotheses.length).toBe(1);
+    
   
-  
+   
 
-  
-  
- 
   });
 });

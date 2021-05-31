@@ -53,9 +53,7 @@ describe('AnalysesComponent: input', () => {
     compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges()
   });
-
-  it('new var', async () => {
-  
+  function cargaDatos(){
     document.getElementById('agregarAnalyses')?.click();
     fixture.detectChanges()
     const Name = (<HTMLInputElement> document.getElementById('name0'));
@@ -77,7 +75,12 @@ describe('AnalysesComponent: input', () => {
     alpha.value = 'Foo';
     alpha.dispatchEvent(new Event('input'));
 
-    console.log(component);
+  }
+
+  it('new analyses', async () => {
+    cargaDatos()
+   
+   
     
     expect(component.analyses.length).toBe(2);
     expect(component.analyses[0].name).toBe('Foo');
@@ -89,6 +92,45 @@ describe('AnalysesComponent: input', () => {
     document.getElementById('removerTables')?.click();
     fixture.detectChanges()
     expect(component.analyses[0].table.length).toBe(0);
+
+
+  });
+  it('new table', async () => {
+  
+    cargaDatos()
+   
+    
+   
+    expect(component.analyses[0].table[0].analyses_type).toBe('null_hypothesis_test');
+    expect(component.analyses[0].table.length).toBe(1);
+    expect(component.analyses[0].table[0].id).toBe("Foo");
+    expect(component.analyses[0].table[0].test).toBe("anova");
+    expect(component.analyses[0].table[0].alpha).toBe("Foo");
+   
+
+
+  });
+  it('delete  table', async () => {
+  
+    cargaDatos()
+   
+    
+    document.getElementById('removerTables')?.click();
+    fixture.detectChanges()
+    expect(component.analyses[0].table.length).toBe(0);
+   
+
+
+  });
+  it('delete  analyses', async () => {
+  
+    cargaDatos()
+   
+    
+    document.getElementById('removerAnalyses')?.click();
+    fixture.detectChanges()
+    expect(component.analyses.length).toBe(1);
+   
 
 
   });
