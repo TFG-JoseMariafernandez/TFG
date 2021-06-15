@@ -8,19 +8,19 @@
 
   <mat-label style="font-size: large; font-weight: bold; margin-bottom: 2%;"><div><span>absctract </span></div> </mat-label>
   <div style="margin-bottom: 2%;">  
-    <label>Context:
+    <label> Context: 
       <input  id = "Context1" [(ngModel)]="absctract.Context" placeholder="Context"/>
     </label>
-    <label>Goal:
+    <label> Goal: 
       <input   id = "absctract.Goal" [(ngModel)]="absctract.Goal" placeholder="Goal"/>
     </label>
-    <label>Method:
+    <label> Method: 
       <input   id = "absctract.Method" [(ngModel)]="absctract.Method" placeholder="Method"/>
     </label>
-    <label>Result:
+    <label> Result: 
       <input   id = "absctract.Result" [(ngModel)]="absctract.Result" placeholder="Result"/>
     </label>
-    <label>Conclusions:
+    <label> Conclusions: 
       <input   id = "absctract.Conclusions" [(ngModel)]="absctract.Conclusions" placeholder="Conclusions"/>
     </label> </div>
 
@@ -29,28 +29,27 @@
     <mat-label  style="font-size: large; font-weight: bold; margin-bottom: 2%;">
     <div ><span>Goal </span></div> </mat-label>
   <div>  
-    <label>   Analyce :  
-      <input id ="goal.analyce" [(ngModel)]="goal.analyce" placeholder="Context"/>
+    <label> Analyce :  
+      <input id ="goal.analyce" [(ngModel)]="goal.analyce" placeholder="Analyce"/>
     </label>
-    <label>for purpose of : 
-      <input id ="goal.purpose_of"  [(ngModel)]="goal.purpose_of" placeholder="Goal"/>
+    <label> for purpose of : 
+      <input id ="goal.purpose_of"  [(ngModel)]="goal.purpose_of" placeholder="Purpose of"/>
     </label>
-    <label>
-      With respect to
-      <input  id ="goal.respect_to" [(ngModel)]="goal.respect_to" placeholder="Method"/>
+    <label> With respect to
+      <input  id ="goal.respect_to" [(ngModel)]="goal.respect_to" placeholder="Respect to"/>
     </label>
-    <label>  From the point of view of :
-      <input id ="goal.point_of_view"  [(ngModel)]="goal.point_of_view" placeholder="Result"/>
+    <label> From the point of view of :
+      <input id ="goal.point_of_view"  [(ngModel)]="goal.point_of_view" placeholder="Point of view"/>
     </label>
     <label> In the context of 
-      <input  id ="goal.context_of" [(ngModel)]="goal.context_of" placeholder="Conclusions"/>
+      <input  id ="goal.context_of" [(ngModel)]="goal.context_of" placeholder="Context of"/>
     </label>
 
   </div>
 
 <mat-card style="margin-bottom: 1%; background-color: rgb(207, 213, 218); margin-top: 2%;">
   <mat-label  style="font-size: large; font-weight: bold;">
-  <span>experimenters </span>
+  <span> Experimenters </span>
   <button (click)="agregarExperimenters()"  id = "agregarExperimenters"  mat-fab color="primary" aria-label="Example icon button with a delete icon">
     +
   </button>

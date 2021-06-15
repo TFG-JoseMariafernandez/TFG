@@ -58,7 +58,7 @@ function cargaDatos(){
     fixture.detectChanges()
 
     const select: HTMLSelectElement = fixture.debugElement.query(By.css('.design')).nativeElement;
-    select.value = select.options[1].value;  // <-- select a new value
+    select.value = select.options[0].value;  
     select.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     const Exname = (<HTMLInputElement> document.getElementById('parameters.name'));
@@ -73,21 +73,51 @@ function cargaDatos(){
     const measure_in = (<HTMLInputElement> document.getElementById('parameters.measure_in'));
     measure_in.value = 'Foo';
     measure_in.dispatchEvent(new Event('input'));
+    const GroupNAme = (<HTMLInputElement> document.getElementById('group.name'));
+    GroupNAme.value = 'Foo';
+    GroupNAme.dispatchEvent(new Event('input'));
+    const GroupSize = (<HTMLInputElement> document.getElementById('group.size'));
+    GroupSize.value = 'Foo';
+    GroupSize.dispatchEvent(new Event('input'));
+
 }
   it('new design', async () => {
     cargaDatos()
     expect(component.Desing.length).toBe(2);
-    expect(component.Desing[0].design).toBe('Pre-test/post-test');
+    expect(component.Desing[0].design).toBe('Custom');
     expect(component.Desing[0].design_parameters.length).toBe(1);
     expect(component.Desing[0].design_parameters[0].name).toBe("Foo");
     expect(component.Desing[0].design_parameters[0].value).toBe("Foo");
     expect(component.Desing[0].design_parameters[0].measure_in).toBe("Foo");
     expect(component.Desing[0].design_parameters[0].description).toBe("Foo");
+    expect(component.Desing[0].groups[0].name).toBe("Foo");
+    expect(component.Desing[0].groups[0].size).toBe("Foo");
+
 
    
 
     document.getElementById('guardar')?.click();
     fixture.detectChanges();
+  });
+  it('new Group', async () => {
+  
+    cargaDatos()
+    expect(component.Desing[0].design_parameters.length).toBe(1);
+    expect(component.Desing[0].groups[0].name).toBe("Foo");
+    expect(component.Desing[0].groups[0].size).toBe("Foo");
+   
+
+    
+  });
+  it('delete Group ', async () => {
+  
+    cargaDatos()
+    document.getElementById('removerGroup')?.click();
+    fixture.detectChanges();
+    expect(component.Desing[0].groups.length).toBe(0);
+    
+
+    
   });
   it('new design_parameters table', async () => {
   

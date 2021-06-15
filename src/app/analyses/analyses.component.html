@@ -85,7 +85,7 @@
               </select>
               <div *ngIf="table.test == 'anova'">
                 Alpha
-                <input [attr.id]='"alpha"+i' [(ngModel)]="table.alpha" placeholder="Name"/>
+                <input [attr.id]='"alpha"+i' [(ngModel)]="table.alpha" placeholder="Alpha"/>
 
               </div>
               <div *ngIf="!valorvariableAlpha(table.alpha)"> 
@@ -250,10 +250,11 @@
                   </select>
                   <select  class = 'operator'  [(ngModel)]="hav.operator" placeholder="group_var">
 
-                    <option value="=">=</option>
-                 
+                    <option value="=">=</option>                 
                     <option value=">='"> >= </option>
-                    <option value=">'"> > </option>                   
+                    <option value=">'"> > </option>  
+                    <option value=">'"> < </option>                 
+                    <option value=">'"> =< </option>
                        
                   </select>
 

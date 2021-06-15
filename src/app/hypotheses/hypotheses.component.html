@@ -19,7 +19,7 @@
   
     
     <mat-card  style="background-color: rgb(204, 197, 197); margin-bottom: 2%;">
-        Name      
+        Name :      
         <input [attr.id]='"name"+i' id = "name" [(ngModel)]="hypothese.name" placeholder="Name"/>
         <div *ngFor="let v of hypotheses; let varia = index " >
           <div *ngIf="i !=varia" >
@@ -30,9 +30,9 @@
       </div>
     </div>
       
-     
+
       
-      Type   
+      Type: 
         
         <select class='type0' [attr.id]='"type"+i'  [(ngModel)]="hypothese.type" placeholder="type">
             <option value="impacted">Is impacted significatly by </option>
@@ -42,15 +42,15 @@
             
           </select>
         
-  
+  <div>
       
-     Description
+     Description: 
        
         <ckeditor  max-width= 50%;    [editor]="Editor"[(ngModel)]="hypothese.description"  placeholder="description"></ckeditor>
         
-    
+      </div>
      
-        variable    outcome
+        Variable    
         
         <select calss = 'vari0' [attr.id]='"variable"+i' [(ngModel)]="hypothese.variable" placeholder="description">
             <option  *ngFor="let variable of Variable; let i = index " value="{{variable.name}}">{{variable.name}} </option>
@@ -58,7 +58,7 @@
           </select>
         
       
-     variable
+     Variable Outcome
       <select class = "outcome0" [attr.id]='"outcome"+i'   [(ngModel)]="hypothese.variable_outcome" placeholder="description">
       <option  *ngFor="let variableOut of Variable_Outcome ; let j = index " value="{{variableOut.name}}">{{variableOut.name}} </option>
                  

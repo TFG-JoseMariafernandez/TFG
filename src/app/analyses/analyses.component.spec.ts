@@ -72,7 +72,7 @@ describe('AnalysesComponent: input', () => {
     selectTest.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     const alpha = (<HTMLInputElement> document.getElementById('alpha0'));
-    alpha.value = 'Foo';
+    alpha.value = '20';
     alpha.dispatchEvent(new Event('input'));
 
   }
@@ -88,7 +88,7 @@ describe('AnalysesComponent: input', () => {
     expect(component.analyses[0].table.length).toBe(1);
     expect(component.analyses[0].table[0].id).toBe("Foo");
     expect(component.analyses[0].table[0].test).toBe("anova");
-    expect(component.analyses[0].table[0].alpha).toBe("Foo");
+    expect(component.analyses[0].table[0].alpha).toBe("20");
     document.getElementById('removerTables')?.click();
     fixture.detectChanges()
     expect(component.analyses[0].table.length).toBe(0);
@@ -105,7 +105,7 @@ describe('AnalysesComponent: input', () => {
     expect(component.analyses[0].table.length).toBe(1);
     expect(component.analyses[0].table[0].id).toBe("Foo");
     expect(component.analyses[0].table[0].test).toBe("anova");
-    expect(component.analyses[0].table[0].alpha).toBe("Foo");
+    expect(component.analyses[0].table[0].alpha).toBe("20");
    
 
 

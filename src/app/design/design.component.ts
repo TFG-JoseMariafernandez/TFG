@@ -1,4 +1,3 @@
-
 import { Design_Parameters,Setting, Desing, Group, Protocol} from '../models/design';
 import { Component, OnInit, EventEmitter, Output , Input } from '@angular/core';
 import {Variables,Type}from '../models/variables'
