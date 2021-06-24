@@ -35,7 +35,7 @@ export class ContextComponent implements OnInit {
   context : Context = {
     Absatract : this.absctract,
     Goal: this.goal,
-    Experimenters : [],
+    Experimenters : this.experimenters,
   }
   
   @Output()
@@ -64,6 +64,7 @@ export class ContextComponent implements OnInit {
    
     
     this.guarda = context;
+  
 
     this.enviar.emit(this.guarda); 
     
